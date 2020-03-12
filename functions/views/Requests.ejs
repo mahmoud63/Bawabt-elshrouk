@@ -1,0 +1,81 @@
+<div class="sidebar-container">
+  <div   class="sidebar-logo">
+    بوابة
+  </div>
+  <ul class="sidebar-navigation"  >
+    <li>
+      <a href="/orders"  >
+        <i   aria-hidden="true"></i> الطلبات
+      </a>
+    </li>
+    <li>
+      <a href="/Requests"   >
+        <i   aria-hidden="true"></i> الطلبيات
+      </a>
+    </li>
+
+    <li>
+      <a   href="/contracts">
+        <i   aria-hidden="true"></i> التعاقدات
+      </a>
+    </li>
+    <li>
+      <a href="/salemen"  >
+        <i   aria-hidden="true"></i> البائعين
+      </a>
+    </li>
+       <li>
+            <a href="/customers"  >
+                <i   aria-hidden="true"></i> العملاء
+            </a>
+        </li>
+
+
+    <li>
+      <a href="/supports"  >
+        <i   aria-hidden="true"></i> الدعم
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="container-fluid">
+      <div class="jumbotron text-center">
+        <h1>الطلبات</h1>
+      </div>
+
+      <table class="table table-bordered table-hover table-striped text-center">
+        <thead>
+          <tr>
+            <th>اسم الطلب</th>
+            <th>الوصف</th>
+            <th>الاجرائات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var Request in Requests){ %>
+
+          <tr>
+            <td>
+              <%= customers[`${Requests[Request].customerUID}`].customerName %>
+            </td>
+            <td>
+              <%= Requests[Request].requestTime%>
+            </td>
+            <td>
+              <a href="/Request/<%= Request %>" class="btn btn-primary">عرض</a>
+
+              <a href="/removeRequest/<%= Request %>" class="btn btn-danger"
+                >مسح</a
+              >
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>

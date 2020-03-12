@@ -1,0 +1,82 @@
+<div class="sidebar-container">
+  <div   class="sidebar-logo">
+    بوابة
+  </div>
+  <ul class="sidebar-navigation"  >
+    <li>
+      <a href="/orders"  >
+        <i   aria-hidden="true"></i> الطلبات
+      </a>
+    </li>
+    <li>
+      <a href="/Requests"   >
+        <i   aria-hidden="true"></i> الطلبيات
+      </a>
+    </li>
+
+    <li>
+      <a   href="/contracts">
+        <i   aria-hidden="true"></i> التعاقدات
+      </a>
+    </li>
+    <li>
+      <a href="/salemen"  >
+        <i   aria-hidden="true"></i> البائعين
+      </a>
+    </li>
+       <li>
+            <a href="/customers"  >
+                <i   aria-hidden="true"></i> العملاء
+            </a>
+        </li>
+
+
+    <li>
+      <a href="/supports"  >
+        <i   aria-hidden="true"></i> الدعم
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+<div class="content-container">
+    <div class="container-fluid">
+        <div class="jumbotron text-center">
+            <h1>اضافة عميل</h1>
+        </div>
+        <% if(err!==0){ %>
+        <div class="alert alert-danger" role="alert">
+            الايميل مسجل من قبل
+        </div>
+        <% } %>
+
+        <form action="/addCustomer" method="POST" dir="rtl">
+            <div class="form-group">
+                <label> اسم العميل </label>
+                <input type="text" name="name" required class="form-control" />
+            </div>
+            <div class="form-group">
+                <label> بريد العميل </label>
+                <input type="text" name="email" required class="form-control" />
+            </div>
+            <div class="form-group">
+                <label> هاتف العميل </label>
+                <input type="text" name="phone" required class="form-control" />
+            </div>
+            <div class="form-group">
+                <label style="margin-right: 2%;"> كلمة السر </label>
+                <input type="text" name="password" minlength="6" required class="form-control" />
+            </div>
+            <div class="form-group">
+                <label> اسم الشركة </label>
+                <input type="text" name="company" required class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="اضافة" class="btn btn-primary btn-lg" />
+            </div>
+        </form>
+    </div>
+</div>
+</body>

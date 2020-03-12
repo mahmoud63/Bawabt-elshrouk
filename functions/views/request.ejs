@@ -1,0 +1,65 @@
+<div class="sidebar-container">
+    <div class="sidebar-logo">
+        بوابة
+    </div>
+    <ul class="sidebar-navigation">
+        <li>
+            <a href="/orders">
+                <i aria-hidden="true"></i> الطلبات
+            </a>
+        </li>
+        <li>
+            <a href="/Requests">
+                <i aria-hidden="true"></i> الطلبيات
+            </a>
+        </li>
+
+        <li>
+            <a href="/contracts">
+                <i aria-hidden="true"></i> التعاقدات
+            </a>
+        </li>
+        <li>
+            <a href="/salemen">
+                <i aria-hidden="true"></i> البائعين
+            </a>
+        </li>
+        <li>
+            <a href="/customers">
+                <i aria-hidden="true"></i> العملاء
+            </a>
+        </li>
+
+
+        <li>
+            <a href="/supports">
+                <i aria-hidden="true"></i> الدعم
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="content-container">
+    <div class="container-fluid">
+
+        <div class="jumbotron text-center">
+            <h1> طلبية من <%= customers[`${child.customerUID}`].customerName %></h1>
+        </div>
+
+
+
+        <div class="list-group">
+           
+            <a href="#" class="list-group-item list-group-item-action">اسم العميل :<%= customers[`${child.customerUID}`].customerName %></a>
+            <a href="#" class="list-group-item list-group-item-action"> نوع التعاقد :<%= child['requestContractType'] %></a>
+            <a href="#" class="list-group-item list-group-item-action"> ملاحظات الطلبية
+                :<%= child['requestNotes'] %></a>
+            <a href="#" class="list-group-item list-group-item-action"> نوع الدعم :<%= child['requestSupportType'] %></a>
+            <a href="#" class="list-group-item list-group-item-action">تاريخ الطلب : <%= child['requestTime'] %></a>
+  
+
+        </div>
+    </div>
+</div>
+</body>

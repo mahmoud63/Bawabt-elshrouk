@@ -1,0 +1,92 @@
+<div class="sidebar-container">
+  <div   class="sidebar-logo">
+    بوابة
+  </div>
+  <ul class="sidebar-navigation"  >
+    <li>
+      <a href="/orders"  >
+        <i   aria-hidden="true"></i> الطلبات
+      </a>
+    </li>
+    <li>
+      <a href="/Requests"   >
+        <i   aria-hidden="true"></i> الطلبيات
+      </a>
+    </li>
+
+    <li>
+      <a   href="/contracts">
+        <i   aria-hidden="true"></i> التعاقدات
+      </a>
+    </li>
+    <li>
+      <a href="/salemen"  >
+        <i   aria-hidden="true"></i> البائعين
+      </a>
+    </li>
+       <li>
+            <a href="/customers"  >
+                <i   aria-hidden="true"></i> العملاء
+            </a>
+        </li>
+
+
+    <li>
+      <a href="/supports"  >
+        <i   aria-hidden="true"></i> الدعم
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  <div class="content-container">
+    <div class="container-fluid">
+      <div class="jumbotron text-center">
+        <h1>الطلبات</h1>
+      </div>
+
+      <table class="table table-bordered table-hover table-striped text-center">
+        <thead>
+          <tr>
+            <th>اسم الطلب</th>
+            <th>الوصف</th>
+            <th>الاجرائات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var order in orders){ %> <%
+          if(orders[order].orderStatus=='Accepted'){%>
+          <tr style="background-color:  rgba(0, 255, 0, 0.2)">
+            <td>
+              <%= orders[order].customerName %>
+            </td>
+            <td>
+              <%= orders[order].orderStatus%>
+            </td>
+            <td>
+              <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
+
+              <a href="/removeOrder/<%= order %>" class="btn btn-danger">مسح</a>
+            </td>
+          </tr>
+          <%}else{%>
+          <tr style="background-color:  rgba(255, 0, 0, 0.2)">
+            <td>
+              <%= orders[order].customerName %>
+            </td>
+            <td>
+              <%= orders[order].orderStatus%>
+            </td>
+            <td>
+              <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
+
+              <a href="/removeOrder/<%= order %>" class="btn btn-danger">مسح</a>
+            </td>
+          </tr>
+          <%}%> <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>

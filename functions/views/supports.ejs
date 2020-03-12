@@ -1,0 +1,86 @@
+<div class="sidebar-container">
+  <div   class="sidebar-logo">
+    بوابة
+  </div>
+  <ul class="sidebar-navigation"  >
+    <li>
+      <a href="/orders"  >
+        <i   aria-hidden="true"></i> الطلبات
+      </a>
+    </li>
+    <li>
+      <a href="/Requests"   >
+        <i   aria-hidden="true"></i> الطلبيات
+      </a>
+    </li>
+
+    <li>
+      <a   href="/contracts">
+        <i   aria-hidden="true"></i> التعاقدات
+      </a>
+    </li>
+    <li>
+      <a href="/salemen"  >
+        <i   aria-hidden="true"></i> البائعين
+      </a>
+    </li>
+       <li>
+            <a href="/customers"  >
+                <i   aria-hidden="true"></i> العملاء
+            </a>
+        </li>
+
+
+    <li>
+      <a href="/supports"  >
+        <i   aria-hidden="true"></i> الدعم
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="container-fluid">
+      <div class="jumbotron text-center">
+        <h1>الدعم</h1>
+      </div>
+      <a
+        class="btn btn-primary"
+        href="/addSupport"
+        style="margin: 10; position:relative; left: 1000px;"
+        >اضافة دعم</a
+      >
+      <table class="table table-bordered table-hover table-striped text-center">
+        <thead>
+          <tr>
+            <th>اسم الدعم</th>
+
+            <th>الاجرائات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var support in supports){ %>
+          <tr>
+            <td>
+              <%= supports[support].Name %>
+            </td>
+
+            <td>
+              <a href="/editSupport/<%= support %>" class="btn btn-primary"
+                >تعديل</a
+              >
+
+              <a href="/removeSupport/<%= support %>" class="btn btn-danger"
+                >مسح</a
+              >
+            </td>
+          </tr>
+
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>

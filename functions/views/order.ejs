@@ -1,0 +1,191 @@
+<div class="sidebar-container">
+  <div   class="sidebar-logo">
+    بوابة
+  </div>
+  <ul class="sidebar-navigation"  >
+    <li>
+      <a href="/orders"  >
+        <i   aria-hidden="true"></i> الطلبات
+      </a>
+    </li>
+    <li>
+      <a href="/Requests"   >
+        <i   aria-hidden="true"></i> الطلبيات
+      </a>
+    </li>
+
+    <li>
+      <a   href="/contracts">
+        <i   aria-hidden="true"></i> التعاقدات
+      </a>
+    </li>
+    <li>
+      <a href="/salemen"  >
+        <i   aria-hidden="true"></i> البائعين
+      </a>
+    </li>
+       <li>
+            <a href="/customers"  >
+                <i   aria-hidden="true"></i> العملاء
+            </a>
+        </li>
+
+
+    <li>
+      <a href="/supports"  >
+        <i   aria-hidden="true"></i> الدعم
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  <div class="content-container">
+    <div class="container-fluid">
+
+      <div class="jumbotron text-center">
+        <h1>طلب من <%= child['companyName'] %></h1>
+      </div>
+
+
+
+      <div class="list-group">
+        <% if(child['orderStatus']=='Accepted'){ %>
+          <a href="#" class="list-group-item list-group-item-action"
+            >اسم الشركة : <%= child['companyName'] %></a
+          >
+
+        <a href="#" class="list-group-item list-group-item-action"
+          >نشاط الشركه : <%= child['companyActive'] %>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action"
+          >عنوان الشركة : <%= child['companyLocation'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >بريد الشركة الالكترونى : <%= child['companyMail'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >هاتف الشركة: <%= child['companyPhone'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >موقع الشركة الالكترونى : <%= child['companySite'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >نوع التعاقد : <%= child['contractType'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >اسم العميل :<%= child['customerName'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >مهنة العميل :<%= child['customerJob'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >بريد العميل الالكترونى :<%= child['customerMail'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >هاتف العميل :<%= child['customerPhone'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >تاريخ الطلب : <%= child['orderDate'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >ملاحظات الطلب : <%= child['orderNote'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >حالة الطلب : <%= child['orderStatus'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >نوع الدعم : <%= child['supportType'] %></a
+        >
+
+        <% }else if(child['orderStatus']=='Refused'){ %>
+          <a href="#" class="list-group-item list-group-item-action"
+            >اسم الشركة : <%= child['companyName'] %></a
+          >
+
+        <a href="#" class="list-group-item list-group-item-action"
+          >نشاط الشركة : <%= child['companyActive'] %>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action"
+          >عنوان الشركة : <%= child['companyLocation'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >بريد الشركة الالكترونى : <%= child['companyMail'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >هاتف الشركة : <%= child['companyPhone'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >موقع الشركة الالكترونى : <%= child['companySite'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >اسم العميل :<%= child['customerName'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >مهنة العميل :<%= child['customerJob'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >بريد العميل الالكترونى :<%= child['customerMail'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >هاتف العميل :<%= child['customerPhone'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >تاريخ الطلب : <%= child['orderDate'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >ملاحظات الطلب : <%= child['orderNote'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >حالة الطلب : <%= child['orderStatus'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >سبب الرفض : <%= child['supportType'] %></a
+        >
+
+        <% }else{ %>
+          <a href="#" class="list-group-item list-group-item-action"
+            >اسم الشركة : <%= child['companyName'] %></a
+          >
+        <a href="#" class="list-group-item list-group-item-action"
+          >نشاط الشركة : <%= child['companyActive'] %>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action"
+          >عنوان الشركة : <%= child['companyLocation'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >بريد الشركة الالكترونى : <%= child['companyMail'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >هاتف الشركة : <%= child['companyPhone'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >موقع الشركة الالكترونى : <%= child['companySite'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >اسم العميل :<%= child['customerName'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >مهنة العميل :<%= child['customerJob'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >بريد العميل الالكترونى :<%= child['customerMail'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >هاتف العميل :<%= child['customerPhone'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >تاريخ الطلب : <%= child['orderDate'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >ملاحظات الطلب : <%= child['orderNote'] %></a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >حالة الطلب : <%= child['orderStatus'] %></a
+        >
+
+        <% } %>
+      </div>
+    </div>
+  </div>
+</body>
