@@ -9,6 +9,7 @@ const customer = require('./controllers/customer');
 
 const login = require('./controllers/login');
 const support = require('./controllers/support');
+const noti = require('./controllers/notification');
 
 module.exports = router;
 router.get('/', login.render);
@@ -17,10 +18,14 @@ router.post('/varify', login.varify);
 router.get('/orders', order.renderOrders);
 router.get('/removeOrder/:uid', order.removeOrder);
 router.get('/order/:uid', order.renderOrder);
+router.get('/order/accept/:uid', order.accept);
+router.get('/order/refuse/:uid', order.refuse);
 
 router.get('/Requests', request.renderRequests);
 router.get('/removeRequest/:uid', request.removeRequest);
 router.get('/Request/:uid', request.renderRequest);
+router.get('/Request/accept/:uid', request.accept);
+router.get('/Request/refuse/:uid', request.refuse);
 
 router.get('/contracts', contract.renderContracts);
 router.get('/removeContract/:uid', contract.removeContract);
@@ -49,3 +54,6 @@ router.get('/addSupport', support.renderAddSupport);
 router.post('/addSupport', support.addSupport);
 router.get('/editSupport/:support', support.renderEditSupport);
 router.post('/editSupport', support.editSupport);
+
+router.get('/notifications', noti.notifications);
+router.post('/notification', noti.sendN);

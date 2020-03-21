@@ -7,11 +7,13 @@ function getContracts() {
 
   return ref.once('value').then(snap => snap.val());
 }
+
 function removeContract(UID) {
   const ref = firebaseApp.database().ref('Contract');
 
   return ref.child(`${UID}`).remove();
 }
+
 function getContract(UID) {
   const ref = firebaseApp.database().ref('Contracts');
 
@@ -30,7 +32,6 @@ function addContract(name) {
 
 function editContract(name, contract) {
   const ref = firebaseApp.database().ref(`Contract`);
-
   return ref
     .child(contract.slice(0, -1))
     .child('Name')

@@ -92,7 +92,8 @@ module.exports = {
             customerEmail: email,
             customerPhone: phone,
             customerCompany: company,
-            customerUID: user['uid']
+            customerUID: user['uid'],
+            customerRegisteredBy: 'admin'
           })
           .then(() => {
             return res.redirect('/customers');
@@ -104,7 +105,7 @@ module.exports = {
       .catch(err => {
         return getSalemen()
           .then(salemen => {
-            return res.render('addCustomer', {
+            return res.render('customers', {
               customer: salemen,
               err: err
             });

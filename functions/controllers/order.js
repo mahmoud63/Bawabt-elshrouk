@@ -20,12 +20,21 @@ function getOrder(UID) {
     .once('value')
     .then(snap => snap.val());
 }
+function getSalemen() {
+  const ref = firebaseApp.database().ref('Customer');
+
+  return ref.once('value').then(snap => snap.val());
+}
 
 module.exports = {
   renderOrders: (req, res) => {
-    getOrders()
-      .then(orders => {
-        return res.render('orders', { orders: orders });
+    getSalemen()
+      .then(customer => {
+        return getOrders()
+          .then(orders => {
+            return res.render('orders', { orders: orders, customer });
+          })
+          .catch(err => res.send(err));
       })
       .catch(err => res.send(err));
   },
@@ -44,6 +53,32 @@ module.exports = {
   renderOrder: (req, res) => {
     getOrder(req.params.uid)
       .then(child => res.render('order', { child }))
+      .catch(err => res.send(err));
+  },
+  accept: (req, res) => {
+    const uid = req.params.uid;
+    const ref = firebaseApp.database().ref('Orders');
+
+    return ref
+      .child(`${uid}`)
+      .child('orderStatus')
+      .set('تم الدعم المطلوب')
+      .then(() => {
+        return res.redirect('/orders');
+      })
+      .catch(err => res.send(err));
+  },
+  refuse: (req, res) => {
+    const uid = req.params.uid;
+    const ref = firebaseApp.database().ref('Orders');
+
+    return ref
+      .child(`${uid}`)
+      .child('orderStatus')
+      .set('تم رفض الطلب')
+      .then(() => {
+        return res.redirect('/orders');
+      })
       .catch(err => res.send(err));
   }
 };

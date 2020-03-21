@@ -70,5 +70,31 @@ module.exports = {
       })
 
       .catch(err => res.send(err));
+  },
+  accept: (req, res) => {
+    const uid = req.params.uid;
+    const ref = firebaseApp.database().ref('Requests');
+
+    return ref
+      .child(`${uid}`)
+      .child('requestStatus')
+      .set('تم الدعم المطلوب')
+      .then(() => {
+        return res.redirect('/Requests');
+      })
+      .catch(err => res.send(err));
+  },
+  refuse: (req, res) => {
+    const uid = req.params.uid;
+    const ref = firebaseApp.database().ref('Requests');
+
+    return ref
+      .child(`${uid}`)
+      .child('requestStatus')
+      .set('تم رفض الطلب')
+      .then(() => {
+        return res.redirect('/Requests');
+      })
+      .catch(err => res.send(err));
   }
 };

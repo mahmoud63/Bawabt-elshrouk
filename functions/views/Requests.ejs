@@ -36,6 +36,11 @@
         <i   aria-hidden="true"></i> خطط الدعم
       </a>
     </li>
+    <li>
+      <a href="/notifications">
+        <i aria-hidden="true"></i>  الاشعارات
+      </a>
+    </li>
   </ul>
 </div>
 
@@ -52,27 +57,79 @@
           <tr>
             <th>اسم الطلب</th>
             <th>الوصف</th>
+            <th>نوع التعاقد</th>
+            <th>حالة الطلبية</th>
+
             <th>الاجرائات</th>
           </tr>
         </thead>
         <tbody>
           <% for(var Request in Requests){ %>
 
-          <tr>
+           <%if(Requests[Request].requestStatus=='قيد المراجعة'){%>
+          <tr style="background-color:  rgba(108, 97, 255, 0.2)">
             <td>
               <%= customers[`${Requests[Request].customerUID}`].customerName %>
-            </td>
+            </td> 
             <td>
               <%= Requests[Request].requestTime%>
             </td>
             <td>
+              <%= Requests[Request].requestContractType%>
+            </td>
+             <td>
+              <%= Requests[Request].requestStatus%>
+            </td>
+            <td>
               <a href="/Request/<%= Request %>" class="btn btn-primary">عرض</a>
+              <a href="/Request/accept/<%= Request %>" class="btn btn-primary">قبول</a>
+              <a href="/Request/refuse/<%= Request %>" class="btn btn-primary">رفض</a>
 
-              <a href="/removeRequest/<%= Request %>" class="btn btn-danger"
-                >مسح</a
-              >
+
+              <a href="/removeRequest/<%= Request %>" class="btn btn-danger"> مسح </a>
             </td>
           </tr>
+          <% } else if (Requests[Request].requestStatus=='تم الدعم المطلوب'){%>
+          <tr style="background-color:  rgba(79, 253, 63, 0.2)">
+             <td>
+              <%= customers[`${Requests[Request].customerUID}`].customerName %>
+            </td> 
+            <td>
+              <%= Requests[Request].requestTime%>
+            </td>
+             <td>
+              <%= Requests[Request].requestContractType%>
+            </td>
+             <td>
+              <%= Requests[Request].requestStatus%>
+            </td>
+            <td>
+              <a href="/Request/<%= Request %>" class="btn btn-primary">عرض</a>
+
+              <a href="/removeRequest/<%= Request %>" class="btn btn-danger"> مسح </a>
+            </td>
+          </tr>
+          <% } else if (Requests[Request].requestStatus=='تم رفض الطلب'){%>
+          <tr style="background-color:  rgba(255, 0, 0, 0.2)">
+             <td>
+              <%= customers[`${Requests[Request].customerUID}`].customerName %>
+            </td> 
+            <td>
+              <%= Requests[Request].requestTime%>
+            </td>
+             <td>
+              <%= Requests[Request].requestContractType%>
+            </td>
+             <td>
+              <%= Requests[Request].requestStatus%>
+            </td>
+            <td>
+              <a href="/Request/<%= Request %>" class="btn btn-primary">عرض</a>
+
+              <a href="/removeRequest/<%= Request %>" class="btn btn-danger"> مسح </a>
+            </td>
+          </tr>
+          <% } %>
           <% } %>
         </tbody>
       </table>

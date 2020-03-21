@@ -36,6 +36,11 @@
         <i   aria-hidden="true"></i> خطط الدعم
       </a>
     </li>
+    <li>
+      <a href="/notifications">
+        <i aria-hidden="true"></i>  الاشعارات
+      </a>
+    </li>
   </ul>
 </div>
 
@@ -49,42 +54,95 @@
       <table class="table table-bordered table-hover table-striped text-center">
         <thead>
           <tr>
-            <th>اسم الطلب</th>
+                <th>اسم الشركة</th>
+            <th> هاتف الشركة</th>
+            <th> عنوان الشركة</th>
+            <th> اسم المسؤل</th>
+
+
             <th>الوصف</th>
             <th>الاجرائات</th>
           </tr>
         </thead>
         <tbody>
           <% for(var order in orders){ %> <%
-          if(orders[order].orderStatus=='Accepted'){%>
-          <tr style="background-color:  rgba(0, 255, 0, 0.2)">
+          if(orders[order].orderStatus=='قيد المراجعة'){%>
+          <tr style="background-color:  rgba(108, 97, 255, 0.2)">
+          
             <td>
-              <%= orders[order].customerName %>
+              <%= orders[order].companyName %>
             </td>
+            <td>
+              <%= orders[order].companyPhone %>
+            </td>
+            <td>
+              <%= orders[order].companyLocation %>
+            </td>
+              <td>
+                <%= customer[`${orders[order].customerUID}`].customerName %>
+              </td>
             <td>
               <%= orders[order].orderStatus%>
             </td>
             <td>
               <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
+               <a href="/order/accept/<%= order %>" class="btn btn-primary">قبول</a>
+                <a href="/order/refuse/<%= order %>" class="btn btn-primary">رفض</a>
 
               <a href="/removeOrder/<%= order %>" class="btn btn-danger">مسح</a>
             </td>
           </tr>
-          <%}else{%>
+          <%}else if (orders[order].orderStatus=='تم رفض الطلب'){%>
           <tr style="background-color:  rgba(255, 0, 0, 0.2)">
             <td>
-              <%= orders[order].customerName %>
+              <%= orders[order].companyName %>
+            </td>
+            <td>
+              <%= orders[order].companyPhone %>
+            </td>
+            <td>
+              <%= orders[order].companyLocation %>
+            </td>
+            <td>
+                <%= customer[`${orders[order].customerUID}`].customerName %>
+
             </td>
             <td>
               <%= orders[order].orderStatus%>
             </td>
             <td>
               <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
-
               <a href="/removeOrder/<%= order %>" class="btn btn-danger">مسح</a>
             </td>
           </tr>
-          <%}%> <% } %>
+         
+           <%}else if (orders[order].orderStatus=='تم الدعم المطلوب'){%>
+          <tr style="background-color:  rgba(114, 255, 95, 0.2)">
+            <td>
+              <%= orders[order].companyName %>
+            </td>
+            <td>
+              <%= orders[order].companyPhone %>
+            </td>
+            <td>
+              <%= orders[order].companyLocation %>
+            </td>
+            <td>
+                <%= customer[`${orders[order].customerUID}`].customerName %>
+
+            </td>
+            <td>
+              <%= orders[order].orderStatus%>
+            </td>
+            <td>
+              <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
+              <a href="/removeOrder/<%= order %>" class="btn btn-danger">مسح</a>
+            </td>
+          </tr>
+          <%}%>
+          
+          
+          <% } %>
         </tbody>
       </table>
     </div>

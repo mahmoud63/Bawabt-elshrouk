@@ -36,6 +36,11 @@
         <i   aria-hidden="true"></i> خطط الدعم
       </a>
     </li>
+    <li>
+      <a href="/notifications">
+        <i aria-hidden="true"></i>  الاشعارات
+      </a>
+    </li>
   </ul>
 </div>
 
@@ -45,14 +50,16 @@
         <div class="jumbotron text-center">
             <h1>العملاء</h1>
         </div>
-        <a class="btn btn-primary" href="/addCustomer" style="margin: 10; position:relative; left: 1000px;">اضافة
+        <a class="btn btn-primary" href="/addCustomer" >اضافة
             عميل</a>
+
+            <button class="btn btn-primary" onclick="ex()" id="export" >استخراج ملف اكسل</button>
         <table class="table table-bordered table-hover table-striped text-center">
             <thead>
                 <tr>
                     <th>اسم العميل</th>
                     <th>بريد العميل</th>
-
+ <th> سجل من خلال</th>
                     <th>الاجرائات</th>
                 </tr>
             </thead>
@@ -66,6 +73,9 @@
                     <td>
                         <%= customers[customer].customerEmail %>
                     </td>
+                     <td>
+                        <%= customers[customer].customerRegisteredBy %>
+                    </td>
                     <td>
                         <a href="/editCustomer/<%= customer %>" class="btn btn-primary">تعديل</a>
 
@@ -76,6 +86,83 @@
                 <% } %>
             </tbody>
         </table>
+        <table id="mytable">
+          <tbody style="display:none">
+            <tr>
+                    <td>
+                        اسم المسئول
+                    </td>
+                     <td>
+                        وظيفة المسئول
+                    </td>
+
+                    <td>
+                        بريد المسئول الالكترونى
+                    </td>
+                     <td>
+                        رقم هاتف المسئول
+                    </td>
+                     <td>
+                        اسم المندوب
+                    </td>
+                     <td>
+                        هاتف الشركة
+                    </td>
+                     <td>
+                       عنوان الشركة
+                    </td>
+                     <td>
+                        نشاط الشركة
+                    </td>
+                    
+                </tr>
+          <% for(var customer in customers){ %>
+                <tr>
+                    <td>
+                        <%= customers[customer].customerName %>
+                    </td>
+                     <td>
+                        <%= customers[customer].customerJob %>
+                    </td>
+
+                    <td>
+                        <%= customers[customer].customerEmail %>
+                    </td>
+                     <td>
+                        <%= customers[customer].customerPhone %>
+                    </td>
+                     <td>
+                        <%= customers[customer].customerRegisteredBy %>
+                    </td>
+                     <td>
+                        <%= customers[customer].companyPhone %>
+                    </td>
+                     <td>
+                        <%= customers[customer].companyAddress %>
+                    </td>
+                     <td>
+                        <%= customers[customer].companyJob %>
+                    </td>
+                    
+                </tr>
+
+                <% } %>
+          </tbody>
+        </table>
     </div>
 </div>
+<script>
+        var wb = XLSX.utils.table_to_book(document.getElementById('mytable'), {sheet:"Sheet JS"});
+        var wbout = XLSX.write(wb, {bookType:'xlsx', bookSST:true, type: 'binary'});
+        function s2ab(s) {
+                        var buf = new ArrayBuffer(s.length);
+                        var view = new Uint8Array(buf);
+                        for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+                        return buf;
+        }
+        function ex(){
+        saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'test.xlsx');
+        }
+</script>
+
 </body>
