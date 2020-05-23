@@ -27,7 +27,8 @@ module.exports = {
     getSalemen()
       .then(salemen => {
         return res.render('customers', {
-          customers: salemen
+          customers: salemen,
+          show: true
         });
       })
       .catch(err => res.send(err));
@@ -39,7 +40,8 @@ module.exports = {
         return getSalemen()
           .then(salemen => {
             return res.render('customers', {
-              customers: salemen
+              customers: salemen,
+              show: true
             });
           })
           .catch(err => res.send(err));
@@ -48,7 +50,7 @@ module.exports = {
   },
   renderCustomer: (req, res) => {
     getCustomer(req.params.uid)
-      .then(customer => res.render('customer', { customer }))
+      .then(customer => res.render('customer', { customer, show: true }))
       .catch(err => res.send(err));
   },
   editCustomer: (req, res) => {
@@ -72,7 +74,7 @@ module.exports = {
       .catch(err => res.send(err));
   },
   renderAddCustomer: (req, res) => {
-    res.render('customerAdd', { err: 0 });
+    res.render('customerAdd', { err: 0, show: true });
   },
   addCustomer: async (req, res) => {
     const { name, email, phone, password, company } = req.body;
@@ -107,7 +109,8 @@ module.exports = {
           .then(salemen => {
             return res.render('customers', {
               customer: salemen,
-              err: err
+              err: err,
+              show: true
             });
           })
           .catch(err => res.send(err));

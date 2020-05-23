@@ -39,7 +39,7 @@ module.exports = {
   renderSupports: (req, res) => {
     getSupports()
       .then(Support => {
-        return res.render('supports', { supports: Support });
+        return res.render('supports', { supports: Support, show: true });
       })
       .catch(err => res.send(err));
   },
@@ -49,7 +49,7 @@ module.exports = {
       .then(() => {
         return getSupports()
           .then(Support => {
-            return res.render('supports', { supports: Support });
+            return res.render('supports', { supports: Support, show: true });
           })
           .catch(err => res.send(err));
       })
@@ -57,11 +57,11 @@ module.exports = {
   },
   renderSupport: (req, res) => {
     getSupport(req.params.uid)
-      .then(child => res.render('supports', { child }))
+      .then(child => res.render('supports', { child, show: true }))
       .catch(err => res.send(err));
   },
   renderAddSupport: (req, res) => {
-    res.render('addSupport');
+    res.render('addSupport', { show: true });
   },
   addSupport: (req, res) => {
     let name = req.body.name;
@@ -75,7 +75,11 @@ module.exports = {
     let support = req.params.support;
     getSupports()
       .then(supports => {
-        return res.render('editSupport', { support: support, supports });
+        return res.render('editSupport', {
+          support: support,
+          supports,
+          show: true
+        });
       })
       .catch(err => res.send(err));
   },

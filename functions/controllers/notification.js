@@ -12,7 +12,7 @@ function send__(msg, type) {
 
 module.exports = {
   notifications: (req, res) => {
-    return res.render('notifications');
+    return res.render('notifications', { show: true });
   },
   sendN: (req, res) => {
     // const serviceAccount = require('../helper/bawabt-2aa13-firebase-adminsdk-22lry-42d9039605.json');

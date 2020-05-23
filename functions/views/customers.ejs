@@ -1,59 +1,16 @@
-<div class="sidebar-container">
-  <div   class="sidebar-logo">
-    بوابة
-  </div>
-  <ul class="sidebar-navigation"  >
-    <li>
-      <a href="/orders"  >
-        <i   aria-hidden="true"></i>  طلبات دعم جديدة
-      </a>
-    </li>
-    <li>
-      <a href="/Requests"   >
-        <i   aria-hidden="true"></i> الطلبيات
-      </a>
-    </li>
 
-    <li>
-      <a   href="/contracts">
-        <i   aria-hidden="true"></i> خطط الاشتراك
-      </a>
-    </li>
-    <li>
-      <a href="/salemen"  >
-        <i   aria-hidden="true"></i> المندوبين
-      </a>
-    </li>
-       <li>
-            <a href="/customers"  >
-                <i   aria-hidden="true"></i> العملاء
-            </a>
-        </li>
+		<h2 class="content-heading">العملاء</h2>
+		
+		<div class="block">
+            <div class="block-header block-header-default">
+                <h3 class="block-title"><a class="btn btn-primary" href="/addCustomer" >اضافة عميل</a></h3>
+				<button class="btn btn-danger" onclick="exportTableToExcel('mytable', 'members-data.xlsx')" >تحميل قائمة العملاء</button>
+            </div>
+		</div>
+		
+        
 
-
-    <li>
-      <a href="/supports"  >
-        <i   aria-hidden="true"></i> خطط الدعم
-      </a>
-    </li>
-    <li>
-      <a href="/notifications">
-        <i aria-hidden="true"></i>  الاشعارات
-      </a>
-    </li>
-  </ul>
-</div>
-
-
-<div class="content-container">
-    <div class="container-fluid">
-        <div class="jumbotron text-center">
-            <h1>العملاء</h1>
-        </div>
-        <a class="btn btn-primary" href="/addCustomer" >اضافة
-            عميل</a>
-
-            <button class="btn btn-primary" onclick="exportTableToExcel('mytable', 'members-data.xlsx')" >استخراج ملف اكسل</button>
+            
         <table class="table table-bordered table-hover table-striped text-center">
             <thead>
                 <tr>

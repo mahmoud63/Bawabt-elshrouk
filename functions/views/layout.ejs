@@ -1,50 +1,375 @@
-<html lang="en" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" class="no-focus">
   <head>
-  <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Bawabt AlSharq - Application Admin Panel"
+    />
+    <meta name="author" content="Space LTD." />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- Open Graph Meta -->
+    <meta
+      property="og:title"
+      content="Bawabt AlSharq - Application Admin Panel"
+    />
+    <meta property="og:site_name" content="Space LTD." />
+    <meta
+      property="og:description"
+      content="Bawabt AlSharq - Application Admin Panel"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script lang="javascript"  src="js/xlsx.full.min.js"></script>
-<script lang="javascript" src="js/FileSaver.min.js"></script>
+    <!-- Icons -->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <base href="/" />
+    <link rel="shortcut icon" href="media/favicons/favicon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="media/favicons/favicon-192x192.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="media/favicons/apple-touch-icon-180x180.png"
+    />
+    <!-- END Icons -->
 
+    <!-- Stylesheets -->
+    <!-- Fonts and Codebase framework -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Cairo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" id="css-main" href="css/codebase.min.css" />
+  </head>
+  <body>
+    <% if (show) { %>
+    <div
+      id="page-container"
+      class="sidebar-o sidebar-inverse enable-page-overlay side-scroll page-header-fixed"
+    >
+      <nav id="sidebar">
+        <!-- Sidebar Content -->
+        <div class="sidebar-content">
+          <!-- Side Header -->
+          <div class="content-header content-header-fullrow px-15">
+            <!-- Mini Mode -->
+            <div class="content-header-section sidebar-mini-visible-b">
+              <!-- Logo -->
+              <span
+                class="content-header-item font-w700 font-size-xl float-left animated fadeIn"
+              >
+                <span class="text-dual-primary-dark">c</span
+                ><span class="text-primary">b</span>
+              </span>
+              <!-- END Logo -->
+            </div>
+            <!-- END Mini Mode -->
 
-  <link rel="stylesheet" href="/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/css/style.css" />
+            <!-- Normal Mode -->
+            <div
+              class="content-header-section text-center align-parent sidebar-mini-hidden"
+            >
+              <!-- Close Sidebar, Visible only on mobile screens -->
+              <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+              <button
+                type="button"
+                class="btn btn-circle btn-dual-secondary d-lg-none align-v-r"
+                data-toggle="layout"
+                data-action="sidebar_close"
+              >
+                <i class="fa fa-times text-danger"></i>
+              </button>
+              <!-- END Close Sidebar -->
 
-  <!-- Bootstrap core CSS -->
-  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+              <!-- Logo -->
+              <div class="content-header-item">
+                <a class="link-effect font-w700" href="index">
+                  <span class="font-size-xl text-dual-primary-dark">لوحة </span>
+                  <span class="font-size-xl text-primary">التحكم</span>
+                </a>
+              </div>
+              <!-- END Logo -->
+            </div>
+            <!-- END Normal Mode -->
+          </div>
+          <!-- END Side Header -->
 
-  <!-- Custom fonts for this template -->
-  <link
-    href="/vendor/fontawesome-free/css/all.min.css"
-    rel="stylesheet"
-    type="text/css"
-  />
-  <link
-    href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-    rel="stylesheet"
-    type="text/css"
-  />
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-    rel="stylesheet"
-    type="text/css"
-  />
+          <!-- Side User -->
+          <div
+            class="content-side content-side-full content-side-user px-10 align-parent"
+          >
+            <!-- Visible only in mini mode -->
+            <div class="sidebar-mini-visible-b align-v animated fadeIn">
+              <img
+                class="img-avatar img-avatar32"
+                src="media/avatars/avatar.jpg"
+                alt=""
+              />
+            </div>
+            <!-- END Visible only in mini mode -->
 
-  <!-- Custom styles for this template -->
-  <link rel="stylesheet" href="/css/NavStyle.css" />
-  <style>
-    
-  </style>
-  <title>Requests</title>
-</head>
+            <!-- Visible only in normal mode -->
+            <div class="sidebar-mini-hidden-b text-center">
+              <a class="img-link" href="be_pages_generic_profile.html">
+                <img class="img-avatar" src="media/avatars/avatar.jpg" alt="" />
+              </a>
+              <ul class="list-inline mt-10">
+                <li class="list-inline-item">
+                  <a
+                    class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase"
+                    >اسم اليوزر</a
+                  >
+                </li>
+                <li class="list-inline-item">
+                  <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                  <a
+                    class="link-effect text-dual-primary-dark"
+                    data-toggle="layout"
+                    data-action="sidebar_style_inverse_toggle"
+                    href="javascript:void(0)"
+                  >
+                    <i class="si si-drop"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="link-effect text-dual-primary-dark" href="logout">
+                    <i class="si si-logout"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <!-- END Visible only in normal mode -->
+          </div>
+          <!-- END Side User -->
 
-<body>
+          <!-- Side Navigation -->
+          <div class="content-side content-side-full">
+            <ul class="nav-main">
+              <li>
+                <a href="/notifications"
+                  ><i class="si si-cup"></i
+                  ><span class="sidebar-mini-hide">الاشعارات</span></a
+                >
+              </li>
+              <li>
+                <a href="/customers"
+                  ><i class="si si-cup"></i
+                  ><span class="sidebar-mini-hide">العملاء</span></a
+                >
+              </li>
+              <li>
+                <a href="/salemen"
+                  ><i class="si si-cup"></i
+                  ><span class="sidebar-mini-hide">المندوبين</span></a
+                >
+              </li>
+              <li>
+                <a href="/orders"
+                  ><i class="si si-cup"></i
+                  ><span class="sidebar-mini-hide">طلبات العملاء</span></a
+                >
+              </li>
+              <li>
+                <a href="/Requests"
+                  ><i class="si si-cup"></i
+                  ><span class="sidebar-mini-hide">طلبات المندوبين</span></a
+                >
+              </li>
+              <li>
+                <a href="/contracts"
+                  ><i class="si si-cup"></i
+                  ><span class="sidebar-mini-hide">خطط الاشتراك</span></a
+                >
+              </li>
+              <li>
+                <a href="/supports"
+                  ><i class="si si-cup"></i
+                  ><span class="sidebar-mini-hide">خطط الدعم</span></a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- END Side Navigation -->
+        </div>
+        <!-- Sidebar Content -->
+      </nav>
+      <!-- END Sidebar -->
 
-  <%-body%>
+      <!-- Header -->
+      <header id="page-header">
+        <!-- Header Content -->
+        <div class="content-header">
+          <!-- Left Section -->
+          <div class="content-header-section"></div>
+          <!-- END Left Section -->
+
+          <!-- right Section start -->
+          <div class="content-header-section">
+            <!-- Layout Options (used just for demonstration) -->
+            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+
+            <div class="btn-group" role="group">
+              <button
+                type="button"
+                class="btn btn-circle btn-dual-secondary"
+                id="page-header-options-dropdown"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fa fa-wrench"></i>
+              </button>
+              <div
+                class="dropdown-menu min-width-300"
+                aria-labelledby="page-header-options-dropdown"
+              >
+                <h5 class="h6 text-center py-10 mb-10 border-b text-uppercase">
+                  الاعدادات
+                </h5>
+                <h6 class="dropdown-header">الوان لوحة التحكم</h6>
+                <div class="row no-gutters text-center mb-5">
+                  <div class="col-2 mb-5">
+                    <a
+                      class="text-default"
+                      data-toggle="theme"
+                      data-theme="default"
+                      href="javascript:void(0)"
+                    >
+                      <i class="fa fa-2x fa-circle"></i>
+                    </a>
+                  </div>
+                  <div class="col-2 mb-5">
+                    <a
+                      class="text-elegance"
+                      data-toggle="theme"
+                      data-theme="css/themes/elegance.min.css"
+                      href="javascript:void(0)"
+                    >
+                      <i class="fa fa-2x fa-circle"></i>
+                    </a>
+                  </div>
+                  <div class="col-2 mb-5">
+                    <a
+                      class="text-pulse"
+                      data-toggle="theme"
+                      data-theme="css/themes/pulse.min.css"
+                      href="javascript:void(0)"
+                    >
+                      <i class="fa fa-2x fa-circle"></i>
+                    </a>
+                  </div>
+                  <div class="col-2 mb-5">
+                    <a
+                      class="text-flat"
+                      data-toggle="theme"
+                      data-theme="css/themes/flat.min.css"
+                      href="javascript:void(0)"
+                    >
+                      <i class="fa fa-2x fa-circle"></i>
+                    </a>
+                  </div>
+                  <div class="col-2 mb-5">
+                    <a
+                      class="text-corporate"
+                      data-toggle="theme"
+                      data-theme="css/themes/corporate.min.css"
+                      href="javascript:void(0)"
+                    >
+                      <i class="fa fa-2x fa-circle"></i>
+                    </a>
+                  </div>
+                  <div class="col-2 mb-5">
+                    <a
+                      class="text-earth"
+                      data-toggle="theme"
+                      data-theme="css/themes/earth.min.css"
+                      href="javascript:void(0)"
+                    >
+                      <i class="fa fa-2x fa-circle"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="d-none d-xl-block">
+                  <h6 class="dropdown-header">حجم الصفحة</h6>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-block btn-alt-secondary mb-10"
+                    data-toggle="layout"
+                    data-action="content_layout_toggle"
+                  >
+                    تغيير الحجم
+                  </button>
+                </div>
+                <div class="dropdown-divider"></div>
+              </div>
+            </div>
+            <!-- END Layout Options -->
+          </div>
+          <!-- right Section start -->
+        </div>
+        <!-- END Header Content -->
+
+        <!-- END Header Search -->
+
+        <!-- Header Loader -->
+        <!-- Please check out the Activity page under Elements category to see examples of showing/hiding it -->
+        <div id="page-header-loader" class="overlay-header bg-primary">
+          <div class="content-header content-header-fullrow text-center">
+            <div class="content-header-item">
+              <i class="fa fa-sun-o fa-spin text-white"></i>
+            </div>
+          </div>
+        </div>
+        <!-- END Header Loader -->
+      </header>
+      <!-- END Header -->
+      <!-- Main Container -->
+      <main id="main-container">
+        <!-- Page Content -->
+        <div class="content">
+          <%-body%>
+        </div>
+        <!-- END Page Content -->
+      </main>
+      <!-- END Main Container -->
+
+      <!-- Footer -->
+      <footer id="page-footer" class="opacity-0">
+        <div class="content py-20 font-size-xs clearfix">
+          <div class="float-right">
+            تصميم و برمجة <i class="fa fa-heart text-pulse"></i>
+            <a class="font-w600" href="https://spctec.com" target="_blank"
+              >سبيس تكنولوجي</a
+            >
+          </div>
+          <div class="float-left">
+            <a class="font-w600" href="https://bawabt-2aa13.firebaseapp.com"
+              >بوابة الشرق</a
+            >
+            &copy; <span class="js-year-copy"></span>
+          </div>
+        </div>
+      </footer>
+      <!-- END Footer -->
+    </div>
+    <% }else{ %> <%-body%> <% } %>
+    <!-- END Page Container -->
+    <script src="js/codebase.core.min.js"></script>
+    <script src="js/codebase.app.min.js"></script>
+    <!-- Page JS Plugins -->
+    <script src="js/plugins/chartjs/Chart.bundle.min.js"></script>
+
+    <!-- Page JS Code -->
+    <script src="js/pages/be_pages_dashboard.min.js"></script>
+  </body>
 </html>

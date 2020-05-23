@@ -10,6 +10,6 @@ module.exports = {
     }
   },
   render: (req, res) => {
-    res.render('login');
+    res.render('login', { show: false });
   }
 };

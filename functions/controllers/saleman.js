@@ -27,7 +27,8 @@ module.exports = {
     getSalemen()
       .then(salemen => {
         return res.render('saleman', {
-          salemen: salemen
+          salemen: salemen,
+          show: true
         });
       })
       .catch(err => res.send(err));
@@ -39,7 +40,8 @@ module.exports = {
         return getSalemen()
           .then(salemen => {
             return res.render('saleman', {
-              salemen: salemen
+              salemen: salemen,
+              show: true
             });
           })
           .catch(err => res.send(err));
@@ -48,7 +50,7 @@ module.exports = {
   },
   renderSaleman: (req, res) => {
     getSaleman(req.params.uid)
-      .then(salemen => res.render('saleman_', { salemen }))
+      .then(salemen => res.render('saleman_', { salemen, show: true }))
       .catch(err => res.send(err));
   },
   editSaleman: (req, res) => {
@@ -72,7 +74,7 @@ module.exports = {
       .catch(err => res.send(err));
   },
   renderAddSaleman: (req, res) => {
-    res.render('addSaleman', { err: 0 });
+    res.render('addSaleman', { err: 0, show: true });
   },
   addSaleman: async (req, res) => {
     const { name, email, phone, password, company } = req.body;
@@ -106,7 +108,8 @@ module.exports = {
           .then(salemen => {
             return res.render('addSaleman', {
               salemen: salemen,
-              err: err
+              err: err,
+              show: true
             });
           })
           .catch(err => res.send(err));

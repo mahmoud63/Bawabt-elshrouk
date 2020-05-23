@@ -1,93 +1,59 @@
-<div class="sidebar-container">
-  <div   class="sidebar-logo">
-    بوابة
-  </div>
-  <ul class="sidebar-navigation"  >
-    <li>
-      <a href="/orders"  >
-        <i   aria-hidden="true"></i>  طلبات دعم جديدة
-      </a>
-    </li>
-    <li>
-      <a href="/Requests"   >
-        <i   aria-hidden="true"></i> الطلبيات
-      </a>
-    </li>
-
-    <li>
-      <a   href="/contracts">
-        <i   aria-hidden="true"></i> خطط الاشتراك
-      </a>
-    </li>
-    <li>
-      <a href="/salemen"  >
-        <i   aria-hidden="true"></i> المندوبين
-      </a>
-    </li>
-       <li>
-            <a href="/customers"  >
-                <i   aria-hidden="true"></i> العملاء
-            </a>
-        </li>
-
-
-    <li>
-      <a href="/supports"  >
-        <i   aria-hidden="true"></i> خطط الدعم
-      </a>
-    </li>
-    <li>
-      <a href="/notifications">
-        <i aria-hidden="true"></i>  الاشعارات
-      </a>
-    </li>
-  </ul>
-</div>
-
-
-  <div class="content-container">
-    <div class="container-fluid">
-      <div class="jumbotron text-center">
-        <h1>اضافة البائع</h1>
-      </div>
-      <% if(err!==0){ %>
-      <div class="alert alert-danger" role="alert">
-        الايميل مسجل من قبل
-      </div>
-      <% } %>
-
-      <form action="/addSaleman" method="POST" dir="rtl">
-        <div class="form-group">
-          <label> اسم البائع </label>
-          <input type="text" name="name" required class="form-control" />
-        </div>
-        <div class="form-group">
-          <label> بريد البائع </label>
-          <input type="text" name="email" required class="form-control" />
-        </div>
-        <div class="form-group">
-          <label> هاتف البائع </label>
-          <input type="text" name="phone" required class="form-control" />
-        </div>
-        <div class="form-group">
-          <label style="margin-right: 2%;"> كلمة السر </label>
-          <input
-            type="text"
-            name="password"
-            minlength="6"
-            required
-            class="form-control"
-          />
-        </div>
-        <div class="form-group">
-          <label> اسم الشركة </label>
-          <input type="text" name="company" required class="form-control" />
-        </div>
-
-        <div class="form-group">
-          <input type="submit" value="اضافة" class="btn btn-primary btn-lg" />
-        </div>
-      </form>
+        <h2 class="content-heading">اضافة مندوب</h2>
+					
+	<form action="/addSaleman" method="POST"><!-- Form Start -->
+	<div class="row">
+	<div class="col-md-8">
+	
+     <div class="form-material floating">
+		<input type="text" name="name" required class="form-control" >
+        <label for="material-text2"> اسم المندوب</label>
     </div>
-  </div>
-</body>
+	
+	<div class="form-material floating">
+		<input type="text" name="email" required class="form-control" >
+        <label for="material-text2"> بريد المندوب</label>
+    </div>
+	
+	<div class="form-material floating">
+		<input type="text" name="phone" required class="form-control" >
+        <label for="material-text2"> هاتف المندوب</label>
+    </div>
+	
+	<div class="form-material floating">
+		<input type="password" minlength="6" required class="js-pw-strength1 form-control" id="example-pw-strength1" name="password">
+        <label for="material-text2">كلمة السر</label>
+    </div>
+	
+	<div class="form-material floating">
+		<input type="text" minlength="6" required class="js-pw-strength1 form-control" id="example-pw-strength1" name="company">
+        <label for="material-text2"> اسم الشركة </label>
+    </div>
+
+	</div><!-- End Col -->
+					<div class="col-md-2">
+					<hr>
+					<div class="block block-rounded block-link-shadow text-center" href="javascript:void(0)">
+                                <div class="block-content block-content-full block-content-sm bg-pulse-dark">
+                                    <div class="font-w600 text-white">بوابة الشرق</div>
+                                </div>
+                                <div class="block-content block-content-full bg-image" style="background-image: url('/media/photos/photo26.jpg');">
+                                    <img class="img-avatar img-avatar-thumb" src="/media/avatars/avatar.jpg" alt="">
+                                </div>
+								<% if(err!==0){ %>	
+                                <div class="block-content block-content-full block-content-sm bg-pulse">
+                                    <div class="font-size-sm text-white">الايميل مسجل من قبل</div>
+                                </div>
+								<% } %>
+                                <div class="block-content block-content-full">
+                                    <div class="mb-5"><i class="si si-plus fa-2x text-pulse"></i> </div>
+                                    <div class="font-size-sm text-muted">
+									<input type="submit" value="اضافة" class="btn btn-primary btn-lg" />
+									</div>
+                                </div>
+                            </div>
+								
+                            
+                        </div>
+	</div><!-- End Row -->
+	
+</form><!-- Form end -->

@@ -1,150 +1,97 @@
-<div class="sidebar-container">
-  <div   class="sidebar-logo">
-    بوابة
+<!-- Table Head Default -->
+<h2 class="content-heading">طلبات العملاء</h2>
+<div class="block">
+  <div class="block-content">
+    <table class="table table-vcenter">
+      <thead class="thead-light">
+        <tr>
+          <th class="text-center">اسم الشركة</th>
+          <th class="text-center">هاتف الشركة</th>
+          <th class="text-center">عنوان الشركة</th>
+          <th class="text-center">اسم المسؤل</th>
+          <th class="text-center">الوصف</th>
+          <th class="text-center">الاجرائات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var order in orders){ %>
+        <%if(orders[order].orderStatus=='قيدالمراجعة'){%>
+        <tr>
+          <td>
+            <%= orders[order].companyName %>
+          </td>
+          <td>
+            <%= orders[order].companyPhone %>
+          </td>
+          <td>
+            <%= orders[order].companyLocation %>
+          </td>
+          <td>
+            <%= customer[`${orders[order].customerUID}`]['customerName']?
+            customer[`${orders[order].customerUID}`]['customerName']:'' %>
+          </td>
+          <td>
+            <%= orders[order].orderStatus%>
+          </td>
+          <td>
+            <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
+            <a href="/order/accept/<%= order %>" class="btn btn-primary"
+              >قبول</a
+            >
+            <a href="/order/refuse/<%= order %>" class="btn btn-primary">رفض</a>
+
+            <a href="/removeOrder/<%= order %>" class="btn btn-danger">مسح</a>
+          </td>
+        </tr>
+        <%}else if (orders[order].orderStatus=='تم رفض الطلب'){%>
+        <tr style="background-color:  rgba(255, 0, 0, 0.2)">
+          <td>
+            <%= orders[order].companyName %>
+          </td>
+          <td>
+            <%= orders[order].companyPhone %>
+          </td>
+          <td>
+            <%= orders[order].companyLocation %>
+          </td>
+          <td>
+            <%= customer[`${orders[order].customerUID}`]['customerName']?
+            customer[`${orders[order].customerUID}`]['customerName']:'' %>
+          </td>
+          <td>
+            <%= orders[order].orderStatus%>
+          </td>
+          <td>
+            <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
+            <a href="/removeOrder/<%= order %>" class="btn btn-danger">مسح</a>
+          </td>
+        </tr>
+
+        <%}else if (orders[order].orderStatus=='تم الدعم المطلوب'){%>
+        <tr style="background-color:  rgba(114, 255, 95, 0.2)">
+          <td>
+            <%= orders[order].companyName %>
+          </td>
+          <td>
+            <%= orders[order].companyPhone %>
+          </td>
+          <td>
+            <%= orders[order].companyLocation %>
+          </td>
+          <td>
+            <%= customer[`${orders[order].customerUID}`]['customerName']?
+            customer[`${orders[order].customerUID}`]['customerName']:''%>
+          </td>
+          <td>
+            <%= orders[order].orderStatus%>
+          </td>
+          <td>
+            <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
+            <a href="/removeOrder/<%= order %>" class="btn btn-danger">مسح</a>
+          </td>
+        </tr>
+        <%}%> <%}%>
+      </tbody>
+    </table>
   </div>
-  <ul class="sidebar-navigation"  >
-    <li>
-      <a href="/orders"  >
-        <i   aria-hidden="true"></i>  طلبات دعم جديدة
-      </a>
-    </li>
-    <li>
-      <a href="/Requests"   >
-        <i   aria-hidden="true"></i> الطلبيات
-      </a>
-    </li>
-
-    <li>
-      <a   href="/contracts">
-        <i   aria-hidden="true"></i> خطط الاشتراك
-      </a>
-    </li>
-    <li>
-      <a href="/salemen"  >
-        <i   aria-hidden="true"></i> المندوبين
-      </a>
-    </li>
-       <li>
-            <a href="/customers"  >
-                <i   aria-hidden="true"></i> العملاء
-            </a>
-        </li>
-
-
-    <li>
-      <a href="/supports"  >
-        <i   aria-hidden="true"></i> خطط الدعم
-      </a>
-    </li>
-    <li>
-      <a href="/notifications">
-        <i aria-hidden="true"></i>  الاشعارات
-      </a>
-    </li>
-  </ul>
 </div>
-
-
-  <div class="content-container">
-    <div class="container-fluid">
-      <div class="jumbotron text-center">
-        <h1> طلبات دعم جديدة</h1>
-      </div>
-
-      <table class="table table-bordered table-hover table-striped text-center">
-        <thead>
-          <tr>
-                <th>اسم الشركة</th>
-            <th> هاتف الشركة</th>
-            <th> عنوان الشركة</th>
-            <th> اسم المسؤل</th>
-
-
-            <th>الوصف</th>
-            <th>الاجرائات</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% for(var order in orders){ %> <%
-          if(orders[order].orderStatus=='قيد المراجعة'){%>
-          <tr style="background-color:  rgba(108, 97, 255, 0.2)">
-          
-            <td>
-              <%= orders[order].companyName %>
-            </td>
-            <td>
-              <%= orders[order].companyPhone %>
-            </td>
-            <td>
-              <%= orders[order].companyLocation %>
-            </td>
-              <td>
-                <%= customer[`${orders[order].customerUID}`].customerName %>
-              </td>
-            <td>
-              <%= orders[order].orderStatus%>
-            </td>
-            <td>
-              <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
-               <a href="/order/accept/<%= order %>" class="btn btn-primary">قبول</a>
-                <a href="/order/refuse/<%= order %>" class="btn btn-primary">رفض</a>
-
-              <a href="/removeOrder/<%= order %>" class="btn btn-danger">مسح</a>
-            </td>
-          </tr>
-          <%}else if (orders[order].orderStatus=='تم رفض الطلب'){%>
-          <tr style="background-color:  rgba(255, 0, 0, 0.2)">
-            <td>
-              <%= orders[order].companyName %>
-            </td>
-            <td>
-              <%= orders[order].companyPhone %>
-            </td>
-            <td>
-              <%= orders[order].companyLocation %>
-            </td>
-            <td>
-                <%= customer[`${orders[order].customerUID}`].customerName %>
-
-            </td>
-            <td>
-              <%= orders[order].orderStatus%>
-            </td>
-            <td>
-              <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
-              <a href="/removeOrder/<%= order %>" class="btn btn-danger">مسح</a>
-            </td>
-          </tr>
-         
-           <%}else if (orders[order].orderStatus=='تم الدعم المطلوب'){%>
-          <tr style="background-color:  rgba(114, 255, 95, 0.2)">
-            <td>
-              <%= orders[order].companyName %>
-            </td>
-            <td>
-              <%= orders[order].companyPhone %>
-            </td>
-            <td>
-              <%= orders[order].companyLocation %>
-            </td>
-            <td>
-                <%= customer[`${orders[order].customerUID}`].customerName %>
-
-            </td>
-            <td>
-              <%= orders[order].orderStatus%>
-            </td>
-            <td>
-              <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
-              <a href="/removeOrder/<%= order %>" class="btn btn-danger">مسح</a>
-            </td>
-          </tr>
-          <%}%>
-          
-          
-          <% } %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</body>

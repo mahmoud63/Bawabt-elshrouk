@@ -33,7 +33,8 @@ module.exports = {
             return res
               .render('Requests', {
                 Requests: Requests,
-                customers: result
+                customers: result,
+                show: true
               })
               .catch(err => res.send(err));
           });
@@ -63,7 +64,8 @@ module.exports = {
             return res
               .render('request', {
                 child: Request,
-                customers: result
+                customers: result,
+                show: true
               })
               .catch(err => res.send(err));
           });

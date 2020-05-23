@@ -1,94 +1,92 @@
-<div class="sidebar-container">
-  <div   class="sidebar-logo">
-    بوابة
+<h2 class="content-heading">المندوبين</h2>
+
+<div class="block">
+  <div class="block-header block-header-default">
+    <h3 class="block-title">
+      <a class="btn btn-primary" href="/addSaleman">اضافة مندوب</a>
+    </h3>
+    <button
+      class="btn btn-danger"
+      onclick="exportTableToExcel('mytable', 'saleman-data')"
+    >
+      تحميل قائمة المندوبين
+    </button>
   </div>
-  <ul class="sidebar-navigation"  >
-    <li>
-      <a href="/orders"  >
-        <i   aria-hidden="true"></i>  طلبات دعم جديدة
-      </a>
-    </li>
-    <li>
-      <a href="/Requests"   >
-        <i   aria-hidden="true"></i> الطلبيات
-      </a>
-    </li>
-
-    <li>
-      <a   href="/contracts">
-        <i   aria-hidden="true"></i> خطط الاشتراك
-      </a>
-    </li>
-    <li>
-      <a href="/salemen"  >
-        <i   aria-hidden="true"></i> المندوبين
-      </a>
-    </li>
-       <li>
-            <a href="/customers"  >
-                <i   aria-hidden="true"></i> العملاء
-            </a>
-        </li>
-
-
-    <li>
-      <a href="/supports"  >
-        <i   aria-hidden="true"></i> خطط الدعم
-      </a>
-    </li>
-    <li>
-      <a href="/notifications">
-        <i aria-hidden="true"></i>  الاشعارات
-      </a>
-    </li>
-  </ul>
 </div>
 
+<table class="table table-bordered table-hover table-striped text-center">
+  <thead>
+    <tr>
+      <th>اسم البائع</th>
+      <th>بريد البائع</th>
 
-  <div class="content-container">
-    <div class="container-fluid">
-      <div class="jumbotron text-center">
-        <h1>المندوبين</h1>
-      </div>
-      <a
-        class="btn btn-primary"
-        href="/addSaleman"
-        style="margin: 10; position:relative; left: 1000px;"
-        >اضافة بائع</a
-      >
-      <table class="table table-bordered table-hover table-striped text-center">
-        <thead>
-          <tr>
-            <th>اسم البائع</th>
-            <th>بريد البائع</th>
+      <th>الاجرائات</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(var saleman in salemen){ %>
+    <tr>
+      <td><%= salemen[saleman].salesmanName %></td>
+      <td><%= salemen[saleman].salesmanEmail %></td>
+      <td>
+        <a href="/editSaleman/<%= saleman %>" class="btn btn-primary">تعديل</a>
+        <a href="/removeSale/<%= saleman %>" class="btn btn-danger">مسح</a>
+      </td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
 
-            <th>الاجرائات</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% for(var saleman in salemen){ %>
-          <tr>
-            <td>
-              <%= salemen[saleman].salesmanName %>
-            </td>
+<table id="mytable" charset="UTF-8">
+  <tbody style="display:none">
+    <tr>
+      <th>اسم البائع</th>
+      <th>بريد البائع</th>
+      <th>الهاتف</th>
+      <th>الشركه</th>
+    </tr>
 
-            <td>
-              <%= salemen[saleman].salesmanEmail %>
-            </td>
-            <td>
-              <a href="/editSaleman/<%= saleman %>" class="btn btn-primary"
-                >تعديل</a
-              >
+    <% for(var saleman in salemen){ %>
+    <tr>
+      <td><%= salemen[saleman].salesmanName %></td>
+      <td><%= salemen[saleman].salesmanEmail %></td>
+      <td><%= salemen[saleman].salesmanPhone %></td>
+      <td><%= salemen[saleman].salesmanCompany %></td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
 
-              <a href="/removeSale/<%= saleman %>" class="btn btn-danger"
-                >مسح</a
-              >
-            </td>
-          </tr>
+<script charset="UTF-8">
+  function exportTableToExcel(tableID, filename = '') {
+    var downloadLink;
+    var dataType =
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
 
-          <% } %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</body>
+    // Specify file name
+    filename = filename ? filename + '.xlsx' : 'excel_data.xlsx ';
+
+    // Create download link element
+    downloadLink = document.createElement('a');
+
+    document.body.appendChild(downloadLink);
+
+    if (navigator.msSaveOrOpenBlob) {
+      var blob = new Blob(['\efbbbf', tableHTML], {
+        type: dataType
+      });
+      navigator.msSaveOrOpenBlob(blob, filename);
+    } else {
+      // Create a link to the file
+      downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+      // Setting the file name
+      downloadLink.download = filename;
+
+      //triggering the function
+      downloadLink.click();
+    }
+  }
+</script>

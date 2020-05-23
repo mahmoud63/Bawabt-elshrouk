@@ -1,91 +1,92 @@
-<div class="sidebar-container">
-  <div   class="sidebar-logo">
-    بوابة
+<h2 class="content-heading">خطط الاشتراك</h2>
+<div class="block">
+  <div class="block-header block-header-default">
+    <h3 class="block-title">
+      <a class="btn btn-primary" href="/addContract">اضافة تعاقد</a>
+    </h3>
+
+    <button
+      class="btn btn-danger"
+      onclick="exportTableToExcel('mytable', 'members-data.xlsx')"
+    >
+      تحميل قائمة التعافدات
+    </button>
   </div>
-  <ul class="sidebar-navigation"  >
-    <li>
-      <a href="/orders"  >
-        <i   aria-hidden="true"></i>  طلبات دعم جديدة
-      </a>
-    </li>
-    <li>
-      <a href="/Requests"   >
-        <i   aria-hidden="true"></i> الطلبيات
-      </a>
-    </li>
-
-    <li>
-      <a   href="/contracts">
-        <i   aria-hidden="true"></i> خطط الاشتراك
-      </a>
-    </li>
-    <li>
-      <a href="/salemen"  >
-        <i   aria-hidden="true"></i> المندوبين
-      </a>
-    </li>
-       <li>
-            <a href="/customers"  >
-                <i   aria-hidden="true"></i> العملاء
-            </a>
-        </li>
-
-
-    <li>
-      <a href="/supports"  >
-        <i   aria-hidden="true"></i> خطط الدعم
-      </a>
-    </li>
-    <li>
-      <a href="/notifications">
-        <i aria-hidden="true"></i>  الاشعارات
-      </a>
-    </li>
-  </ul>
 </div>
 
+<table class="table table-bordered table-hover table-striped text-center">
+  <thead>
+    <tr>
+      <th>اسم التعاقد</th>
 
-  <div class="content-container">
-    <div class="container-fluid">
-      <div class="jumbotron text-center">
-        <h1>خطط الاشتراك</h1>
-      </div>
-      <a
-        class="btn btn-primary"
-        href="/addContract"
-        style="margin: 10; position:relative; left: 1000px;"
-        >اضافة تعاقد</a
-      >
+      <th>الاجرائات</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(var contract in contracts){ %>
+    <tr>
+      <td>
+        <%= contracts[contract].Name %>
+      </td>
 
-      <table class="table table-bordered table-hover table-striped text-center">
-        <thead>
-          <tr>
-            <th>اسم التعاقد</th>
+      <td>
+        <a href="/editContract/<%=contract%>" class="btn btn-primary">تعديل</a>
 
-            <th>الاجرائات</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% for(var contract in contracts){ %>
-          <tr>
-            <td>
-              <%= contracts[contract].Name %>
-            </td>
+        <a href="/removeContract/<%= contract %>" class="btn btn-danger">مسح</a>
+      </td>
+    </tr>
 
-            <td>
-              <a href="/editContract/<%=contract%>" class="btn btn-primary"
-                >تعديل</a
-              >
+    <% } %>
+  </tbody>
+</table>
 
-              <a href="/removeContract/<%= contract %>" class="btn btn-danger"
-                >مسح</a
-              >
-            </td>
-          </tr>
+<table id="mytable" charset="UTF-8">
+  <tbody style="display:none">
+    <tr>
+      <th>اسم التعاقد</th>
+    </tr>
 
-          <% } %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</body>
+    <% for(var contract in contracts){ %>
+    <tr>
+      <td>
+        <%= contracts[contract].Name %>
+      </td>
+    </tr>
+
+    <% } %>
+  </tbody>
+</table>
+
+<script charset="UTF-8">
+  function exportTableToExcel(tableID, filename = '') {
+    var downloadLink;
+    var dataType =
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+    // Specify file name
+    filename = filename ? filename + '.xlsx' : 'excel_data.xlsx ';
+
+    // Create download link element
+    downloadLink = document.createElement('a');
+
+    document.body.appendChild(downloadLink);
+
+    if (navigator.msSaveOrOpenBlob) {
+      var blob = new Blob(['\efbbbf', tableHTML], {
+        type: dataType
+      });
+      navigator.msSaveOrOpenBlob(blob, filename);
+    } else {
+      // Create a link to the file
+      downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+      // Setting the file name
+      downloadLink.download = filename;
+
+      //triggering the function
+      downloadLink.click();
+    }
+  }
+</script>

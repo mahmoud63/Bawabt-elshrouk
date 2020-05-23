@@ -42,7 +42,7 @@ module.exports = {
   renderContracts: (req, res) => {
     getContracts()
       .then(contracts => {
-        return res.render('contracts', { contracts: contracts });
+        return res.render('contracts', { contracts: contracts, show: true });
       })
       .catch(err => res.send(err));
   },
@@ -53,7 +53,8 @@ module.exports = {
         return getContracts()
           .then(contracts => {
             return res.render('contracts', {
-              contracts: contracts
+              contracts: contracts,
+              show: true
             });
           })
           .catch(err => res.send(err));
@@ -62,11 +63,11 @@ module.exports = {
   },
   renderContract: (req, res) => {
     getContract(req.params.uid)
-      .then(child => res.render('contract', { child }))
+      .then(child => res.render('contract', { child, show: true }))
       .catch(err => res.send(err));
   },
   renderAddContract: (req, res) => {
-    res.render('addContract');
+    res.render('addContract', { show: true });
   },
   AddContract: (req, res) => {
     let name = req.body.name;
@@ -80,7 +81,11 @@ module.exports = {
     let contract = req.params.contract;
     getContracts()
       .then(contracts => {
-        return res.render('editContract', { contract: contract, contracts });
+        return res.render('editContract', {
+          contract: contract,
+          contracts,
+          show: true
+        });
       })
       .catch(err => res.send(err));
   },

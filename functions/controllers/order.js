@@ -30,11 +30,13 @@ module.exports = {
   renderOrders: (req, res) => {
     getSalemen()
       .then(customer => {
-        return getOrders()
-          .then(orders => {
-            return res.render('orders', { orders: orders, customer });
-          })
-          .catch(err => res.send(err));
+        return getOrders().then(orders => {
+          return res.render('orders', {
+            orders: orders,
+            customer,
+            show: true
+          });
+        });
       })
       .catch(err => res.send(err));
   },
@@ -44,7 +46,7 @@ module.exports = {
       .then(() => {
         return getOrders()
           .then(orders => {
-            return res.render('orders', { orders: orders });
+            return res.render('orders', { orders: orders, show: true });
           })
           .catch(err => res.send(err));
       })
@@ -52,7 +54,7 @@ module.exports = {
   },
   renderOrder: (req, res) => {
     getOrder(req.params.uid)
-      .then(child => res.render('order', { child }))
+      .then(child => res.render('order', { child, show: true }))
       .catch(err => res.send(err));
   },
   accept: (req, res) => {
