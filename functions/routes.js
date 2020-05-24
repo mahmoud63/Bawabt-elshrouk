@@ -13,6 +13,10 @@ const noti = require('./controllers/notification');
 
 module.exports = router;
 router.get('/', login.render);
+router.get('/home', (req, res) => {
+  res.render('home', { show: true });
+});
+
 router.post('/varify', login.varify);
 
 router.get('/orders', order.renderOrders);

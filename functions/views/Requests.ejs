@@ -1,5 +1,16 @@
 <h2 class="content-heading">طلبات دعم جديدة</h2>
 
+<div class="block">
+  <div class="block-header block-header-default">
+    <button
+      class="btn btn-danger"
+      onclick="exportTableToExcel('mytable', 'requests-data')"
+    >
+      تحميل قائمة الطلبات
+    </button>
+  </div>
+</div>
+
 <table class="table table-bordered table-hover table-striped text-center">
   <thead>
     <tr>
@@ -41,8 +52,7 @@
     <% } else if (Requests[Request].requestStatus=='تم الدعم المطلوب'){%>
     <tr style="background-color:  rgba(79, 253, 63, 0.2)">
       <td>
-        <%= customers[`${Requests[Request].customerUID}`]['customerName']
-        ?customers[`${Requests[Request].customerUID}`]['customerName']:''%>
+        <%= customers[`${Requests[Request].customerUID}`]['customerName']%>
       </td>
       <td>
         <%= Requests[Request].requestTime%>
@@ -62,8 +72,7 @@
     <% } else if (Requests[Request].requestStatus=='تم رفض الطلب'){%>
     <tr style="background-color:  rgba(255, 0, 0, 0.2)">
       <td>
-        <%= customers[`${Requests[Request].customerUID}`]['customerName']
-        ?customers[`${Requests[Request].customerUID}`]['customerName']:''%>
+        <%= customers[`${Requests[Request].customerUID}`]['customerName']%>
       </td>
       <td>
         <%= Requests[Request].requestTime%>
@@ -83,3 +92,75 @@
     <% } %> <% } %>
   </tbody>
 </table>
+
+<table id="mytable" charset="UTF-8">
+  <tbody style="display:none">
+    <tr>
+      <td>اسم الطلب</td>
+      <td>الوصف</td>
+      <td>نوع التعاقد</td>
+      <td>حالة الطلبية</td>
+      <td>نوع الدعم</td>
+      <td>الملاحظات</td>
+    </tr>
+
+    <% for(var Request in Requests){ %>
+    <tr>
+      <td>
+        <%= customers[`${Requests[Request].customerUID}`]['customerName']%>
+      </td>
+      <td>
+        <%= Requests[Request].requestTime%>
+      </td>
+      <td>
+        <%= Requests[Request].requestContractType%>
+      </td>
+      <td>
+        <%= Requests[Request].requestStatus%>
+      </td>
+
+      <td>
+        <%= Requests[Request].requestSupportType%>
+      </td>
+
+      <td>
+        <%= Requests[Request].requestNotes%>
+      </td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
+
+<script charset="UTF-8">
+  function exportTableToExcel(tableID, filename = '') {
+    var downloadLink;
+    var dataType =
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+    // Specify file name
+    filename = filename ? filename + '.xlsx' : 'excel_data.xlsx ';
+
+    // Create download link element
+    downloadLink = document.createElement('a');
+
+    document.body.appendChild(downloadLink);
+
+    if (navigator.msSaveOrOpenBlob) {
+      var blob = new Blob(['\efbbbf', tableHTML], {
+        type: dataType
+      });
+      navigator.msSaveOrOpenBlob(blob, filename);
+    } else {
+      // Create a link to the file
+      downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+      // Setting the file name
+      downloadLink.download = filename;
+
+      //triggering the function
+      downloadLink.click();
+    }
+  }
+</script>

@@ -14,36 +14,9 @@
         </tr>
       </thead>
       <tbody>
-        <% for(var order in orders){ %>
-        <%if(orders[order].orderStatus=='قيدالمراجعة'){%>
-        <tr>
-          <td>
-            <%= orders[order].companyName %>
-          </td>
-          <td>
-            <%= orders[order].companyPhone %>
-          </td>
-          <td>
-            <%= orders[order].companyLocation %>
-          </td>
-          <td>
-            <%= customer[`${orders[order].customerUID}`]['customerName']?
-            customer[`${orders[order].customerUID}`]['customerName']:'' %>
-          </td>
-          <td>
-            <%= orders[order].orderStatus%>
-          </td>
-          <td>
-            <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
-            <a href="/order/accept/<%= order %>" class="btn btn-primary"
-              >قبول</a
-            >
-            <a href="/order/refuse/<%= order %>" class="btn btn-primary">رفض</a>
-
-            <a href="/removeOrder/<%= order %>" class="btn btn-danger">مسح</a>
-          </td>
-        </tr>
-        <%}else if (orders[order].orderStatus=='تم رفض الطلب'){%>
+        <% for(let order in orders){ %>
+        <div></div>
+        <%if (orders[order].orderStatus=='تم رفض الطلب'){%>
         <tr style="background-color:  rgba(255, 0, 0, 0.2)">
           <td>
             <%= orders[order].companyName %>
@@ -55,8 +28,7 @@
             <%= orders[order].companyLocation %>
           </td>
           <td>
-            <%= customer[`${orders[order].customerUID}`]['customerName']?
-            customer[`${orders[order].customerUID}`]['customerName']:'' %>
+            <%= customer[`${orders[order].customerUID}`]['customerName'] %>
           </td>
           <td>
             <%= orders[order].orderStatus%>
@@ -79,8 +51,7 @@
             <%= orders[order].companyLocation %>
           </td>
           <td>
-            <%= customer[`${orders[order].customerUID}`]['customerName']?
-            customer[`${orders[order].customerUID}`]['customerName']:''%>
+            <%= customer[`${orders[order].customerUID}`]['customerName'] %>
           </td>
           <td>
             <%= orders[order].orderStatus%>
@@ -90,7 +61,34 @@
             <a href="/removeOrder/<%= order %>" class="btn btn-danger">مسح</a>
           </td>
         </tr>
-        <%}%> <%}%>
+        <%}else{%>
+        <tr>
+          <td>
+            <%= orders[order].companyName %>
+          </td>
+          <td>
+            <%= orders[order].companyPhone %>
+          </td>
+          <td>
+            <%= orders[order].companyLocation %>
+          </td>
+          <td>
+            <%= customer[`${orders[order].customerUID}`]['customerName'] %>
+          </td>
+          <td>
+            <%= orders[order].orderStatus%>
+          </td>
+          <td>
+            <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
+            <a href="/order/accept/<%= order %>" class="btn btn-primary">
+              قبول
+            </a>
+            <a href="/order/refuse/<%= order %>" class="btn btn-primary">رفض</a>
+
+            <a href="/removeOrder/<%= order %>" class="btn btn-danger">مسح</a>
+          </td>
+        </tr>
+        <%}%><%}%>
       </tbody>
     </table>
   </div>

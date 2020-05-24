@@ -28,19 +28,22 @@ function getSalemen() {
 
 module.exports = {
   renderOrders: (req, res) => {
-    getSalemen()
-      .then(customer => {
-        return getOrders().then(orders => {
-          return res.render('orders', {
-            orders: orders,
-            customer,
-            show: true
+    getOrders()
+      .then(orders => {
+        const ref = firebaseApp.database().ref('Customer');
+        return ref
+          .once('value')
+          .then(snap => snap.val())
+          .then(customer => {
+            return res.render('orders', {
+              orders,
+              customer,
+              show: true
+            });
           });
-        });
       })
       .catch(err => res.send(err));
   },
-
   removeOrder: (req, res) => {
     removeOrder(req.params.uid)
       .then(() => {
