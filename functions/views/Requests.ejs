@@ -24,20 +24,19 @@
   </thead>
   <tbody>
     <% for(var Request in Requests){ %>
-    <%if(Requests[Request].requestStatus=='قيد المراجعة'){%>
+    <%if(Requests[Request]['requestStatus']=='قيد المراجعة'){%>
     <tr style="background-color:  rgba(108, 97, 255, 0.2)">
       <td>
-        <%= customers[`${Requests[Request].customerUID}`]['customerName']
-        ?customers[`${Requests[Request].customerUID}`]['customerName']:''%>
+        <%=Requests[Request]['customerName']%>
       </td>
       <td>
-        <%= Requests[Request].requestTime%>
+        <%= Requests[Request]['requestTime']%>
       </td>
       <td>
-        <%= Requests[Request].requestContractType%>
+        <%= Requests[Request]['requestContractType']%>
       </td>
       <td>
-        <%= Requests[Request].requestStatus%>
+        <%= Requests[Request]['requestStatus']%>
       </td>
       <td>
         <a href="/Request/<%= Request %>" class="btn btn-primary">عرض</a>
@@ -49,19 +48,19 @@
         <a href="/removeRequest/<%= Request %>" class="btn btn-danger"> مسح </a>
       </td>
     </tr>
-    <% } else if (Requests[Request].requestStatus=='تم الدعم المطلوب'){%>
+    <% } else if (Requests[Request]['requestStatus']=='تم الدعم المطلوب'){%>
     <tr style="background-color:  rgba(79, 253, 63, 0.2)">
       <td>
-        <%= customers[`${Requests[Request].customerUID}`]['customerName']%>
+        <%=Requests[Request]['customerName']%>
       </td>
       <td>
-        <%= Requests[Request].requestTime%>
+        <%= Requests[Request]['requestTime']%>
       </td>
       <td>
-        <%= Requests[Request].requestContractType%>
+        <%= Requests[Request]['requestContractType']%>
       </td>
       <td>
-        <%= Requests[Request].requestStatus%>
+        <%= Requests[Request]['requestStatus']%>
       </td>
       <td>
         <a href="/Request/<%= Request %>" class="btn btn-primary">عرض</a>
@@ -69,19 +68,19 @@
         <a href="/removeRequest/<%= Request %>" class="btn btn-danger"> مسح </a>
       </td>
     </tr>
-    <% } else if (Requests[Request].requestStatus=='تم رفض الطلب'){%>
+    <% } else if (Requests[Request]['requestStatus']=='تم رفض الطلب'){%>
     <tr style="background-color:  rgba(255, 0, 0, 0.2)">
       <td>
-        <%= customers[`${Requests[Request].customerUID}`]['customerName']%>
+        <%=Requests[Request]['customerName']%>
       </td>
       <td>
-        <%= Requests[Request].requestTime%>
+        <%= Requests[Request]['requestTime']%>
       </td>
       <td>
-        <%= Requests[Request].requestContractType%>
+        <%= Requests[Request]['requestContractType']%>
       </td>
       <td>
-        <%= Requests[Request].requestStatus%>
+        <%= Requests[Request]['requestStatus']%>
       </td>
       <td>
         <a href="/Request/<%= Request %>" class="btn btn-primary">عرض</a>
@@ -107,24 +106,24 @@
     <% for(var Request in Requests){ %>
     <tr>
       <td>
-        <%= customers[`${Requests[Request].customerUID}`]['customerName']%>
+        <%=Requests[Request]['customerName']%>
       </td>
       <td>
-        <%= Requests[Request].requestTime%>
+        <%= Requests[Request]['requestTime']%>
       </td>
       <td>
-        <%= Requests[Request].requestContractType%>
+        <%= Requests[Request]['requestContractType']%>
       </td>
       <td>
-        <%= Requests[Request].requestStatus%>
-      </td>
-
-      <td>
-        <%= Requests[Request].requestSupportType%>
+        <%= Requests[Request]['requestStatus']%>
       </td>
 
       <td>
-        <%= Requests[Request].requestNotes%>
+        <%= Requests[Request]['requestSupportType']%>
+      </td>
+
+      <td>
+        <%= Requests[Request]['requestNotes']%>
       </td>
     </tr>
     <% } %>

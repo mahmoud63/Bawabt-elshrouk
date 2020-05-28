@@ -16,22 +16,22 @@
       <tbody>
         <% for(let order in orders){ %>
         <div></div>
-        <%if (orders[order].orderStatus=='تم رفض الطلب'){%>
+        <%if (orders[order]['orderStatus']=='تم رفض الطلب'){%>
         <tr style="background-color:  rgba(255, 0, 0, 0.2)">
           <td>
-            <%= orders[order].companyName %>
+            <%= orders[order]['companyName'] %>
           </td>
           <td>
-            <%= orders[order].companyPhone %>
+            <%= orders[order]['companyPhone'] %>
           </td>
           <td>
-            <%= orders[order].companyLocation %>
+            <%= orders[order]['companyLocation'] %>
           </td>
           <td>
-            <%= customer[`${orders[order].customerUID}`]['customerName'] %>
+            <%= orders[order]['customerName'] %>
           </td>
           <td>
-            <%= orders[order].orderStatus%>
+            <%= orders[order]['orderStatus']%>
           </td>
           <td>
             <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
@@ -39,22 +39,22 @@
           </td>
         </tr>
 
-        <%}else if (orders[order].orderStatus=='تم الدعم المطلوب'){%>
+        <%}else if (orders[order]['orderStatus']=='تم الدعم المطلوب'){%>
         <tr style="background-color:  rgba(114, 255, 95, 0.2)">
           <td>
-            <%= orders[order].companyName %>
+            <%= orders[order]['companyName'] %>
           </td>
           <td>
-            <%= orders[order].companyPhone %>
+            <%= orders[order]['companyPhone'] %>
           </td>
           <td>
-            <%= orders[order].companyLocation %>
+            <%= orders[order]['companyLocation'] %>
           </td>
           <td>
-            <%= customer[`${orders[order].customerUID}`]['customerName'] %>
+            <%= orders[order]['customerName'] %>
           </td>
           <td>
-            <%= orders[order].orderStatus%>
+            <%= orders[order]['orderStatus']%>
           </td>
           <td>
             <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>
@@ -64,19 +64,19 @@
         <%}else{%>
         <tr>
           <td>
-            <%= orders[order].companyName %>
+            <%= orders[order]['companyName'] %>
           </td>
           <td>
-            <%= orders[order].companyPhone %>
+            <%= orders[order]['companyPhone'] %>
           </td>
           <td>
-            <%= orders[order].companyLocation %>
+            <%= orders[order]['companyLocation'] %>
           </td>
           <td>
-            <%= customer[`${orders[order].customerUID}`]['customerName'] %>
+            <%= orders[order]['customerName'] %>
           </td>
           <td>
-            <%= orders[order].orderStatus%>
+            <%= orders[order]['orderStatus']%>
           </td>
           <td>
             <a href="/order/<%= order %>" class="btn btn-primary">عرض</a>

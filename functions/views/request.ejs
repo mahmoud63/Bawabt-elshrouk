@@ -1,15 +1,21 @@
+<h2 class="content-heading">
+  طلبية من <%= child['customerName'] %>
+</h2>
 
-            <h2 class="content-heading"> طلبية من <%= customers[`${child.customerUID}`].customerName %></h2>
-
-
-        <div class="list-group">
-           
-            <a href="#" class="list-group-item list-group-item-action">اسم العميل :<%= customers[`${child.customerUID}`].customerName %></a>
-            <a href="#" class="list-group-item list-group-item-action"> نوع التعاقد :<%= child['requestContractType'] %></a>
-            <a href="#" class="list-group-item list-group-item-action"> ملاحظات الطلبية
-                :<%= child['requestNotes'] %></a>
-            <a href="#" class="list-group-item list-group-item-action"> نوع خطة الدعم :<%= child['requestSupportType'] %></a>
-            <a href="#" class="list-group-item list-group-item-action">تاريخ الطلب : <%= child['requestTime'] %></a>
-  
-
-        </div>
+<div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action"
+    >اسم العميل :<%= child['customerName'] %></a
+  >
+  <a href="#" class="list-group-item list-group-item-action">
+    نوع التعاقد :<%= child['requestContractType'] %></a
+  >
+  <a href="#" class="list-group-item list-group-item-action">
+    ملاحظات الطلبية :<%= child['requestNotes'] %></a
+  >
+  <a href="#" class="list-group-item list-group-item-action">
+    نوع خطة الدعم :<%= child['requestSupportType'] %></a
+  >
+  <a href="#" class="list-group-item list-group-item-action"
+    >تاريخ الطلب : <%= child['requestTime'] %></a
+  >
+</div>

@@ -4,7 +4,7 @@ module.exports = {
     let pass = req.body.password;
 
     if (mail === 'admin@admin.com' && pass === '12345') {
-      res.render('home', { show: true });
+      res.redirect('/home');
     } else {
       res.redirect('/');
     }
