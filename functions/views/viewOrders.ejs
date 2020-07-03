@@ -1,0 +1,38 @@
+<script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+
+<h2 class="content-heading">طلبات العملاء</h2>
+
+<div class="block">
+  <div class="block-content">
+    <table class="table table-vcenter">
+      <thead class="thead-light">
+        <tr>
+          <th class="text-center">اسم الشركة</th>
+          <th class="text-center">هاتف الشركة</th>
+          <th class="text-center">عنوان الشركة</th>
+          <th class="text-center">اسم العميل</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let order of orders){ %>
+
+        <tr>
+          <td>
+            <%= orders[order]['companyName'] %>
+          </td>
+          <td>
+            <%= orders[order]['companyPhone'] %>
+          </td>
+          <td>
+            <%= orders[order]['companyLocation'] %>
+          </td>
+          <td>
+            <%= orders[order]['customerName'] %>
+          </td>
+        </tr>
+
+        <%}%>
+      </tbody>
+    </table>
+  </div>
+</div>

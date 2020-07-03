@@ -1,5 +1,18 @@
 <!-- Table Head Default -->
+<script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+
 <h2 class="content-heading">طلبات العملاء</h2>
+
+<div class="block">
+  <div class="block-header block-header-default">
+    <button
+      class="btn btn-danger"
+      onclick="exportTableToExcel('mytable', 'requests-data')"
+    >
+      تحميل قائمة الطلبات
+    </button>
+  </div>
+</div>
 <div class="block">
   <div class="block-content">
     <table class="table table-vcenter">
@@ -17,7 +30,7 @@
         <% for(let order in orders){ %>
         <div></div>
         <%if (orders[order]['orderStatus']=='تم رفض الطلب'){%>
-        <tr style="background-color:  rgba(255, 0, 0, 0.2)">
+        <tr style="background-color: rgba(255, 0, 0, 0.2);">
           <td>
             <%= orders[order]['companyName'] %>
           </td>
@@ -40,7 +53,7 @@
         </tr>
 
         <%}else if (orders[order]['orderStatus']=='تم الدعم المطلوب'){%>
-        <tr style="background-color:  rgba(114, 255, 95, 0.2)">
+        <tr style="background-color: rgba(114, 255, 95, 0.2);">
           <td>
             <%= orders[order]['companyName'] %>
           </td>
@@ -93,3 +106,74 @@
     </table>
   </div>
 </div>
+
+<table id="mytable" charset="UTF-8">
+  <tbody style="display: none;">
+    <tr>
+      <th class="text-center">اسم الشركة</th>
+      <th class="text-center">نشاط الشركة</th>
+
+      <th class="text-center">بريد الشركة</th>
+      <th class="text-center">موقع الشركة</th>
+      <th class="text-center">هاتف الشركة</th>
+
+      <th class="text-center">نوع التعاقد</th>
+      <th class="text-center">عنوان الشركة</th>
+
+      <th class="text-center">اسم المسؤل</th>
+      <th class="text-center">مهنة المسؤل</th>
+      <th class="text-center">بريد المسؤل</th>
+      <th class="text-center">هاتف المسؤل</th>
+
+      <th class="text-center">الوصف</th>
+    </tr>
+
+    <% for(let order in orders){ %>
+    <div></div>
+    <tr>
+      <td>
+        <%= orders[order]['companyName'] %>
+      </td>
+      <td>
+        <%= orders[order]['companyActive'] %>
+      </td>
+      <td>
+        <%= orders[order]['companyMail'] %>
+      </td>
+      <td>
+        <%= orders[order]['companySite'] %>
+      </td>
+      <td>
+        <%= orders[order]['companyPhone'] %>
+      </td>
+      <td>
+        <%= orders[order]['contractType'] %>
+      </td>
+      <td>
+        <%= orders[order]['companyLocation'] %>
+      </td>
+      <td>
+        <%= orders[order]['customerName'] %>
+      </td>
+      <td>
+        <%= orders[order]['customerJob'] %>
+      </td>
+      <td>
+        <%= orders[order]['customerMail'] %>
+      </td>
+      <td>
+        <%= orders[order]['customerPhone'] %>
+      </td>
+      <td>
+        <%= orders[order]['orderStatus']%>
+      </td>
+    </tr>
+    <%}%>
+  </tbody>
+</table>
+
+<script charset="UTF-8">
+  function exportTableToExcel(tableID, filename = '') {
+    TableToExcel.convert(document.getElementById('mytable'));
+  }
+</script>

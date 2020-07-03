@@ -1,27 +1,25 @@
 <h2 class="content-heading">تعديل البائع</h2>
 
-      <form action="/editSaleman" method="POST">
-	  
-	  <label> اسم البائع </label>
-          <input type="text" name="name" class="form-control" value="<%=
-          salemen["salesmanName"] %> " />
-	  
-     <label> بريد البائع </label>
-          <input type="text" name="email" class="form-control" value="<%=
-          salemen["salesmanEmail"] %> " />
+<form action="/editSaleman" method="POST">
+  <label> اسم البائع </label>
+  <input type="text" name="name" class="form-control" value="<%=
+  salemen["salesmanName"] %>" />
+
+  <label> بريد البائع </label>
+  <input type="text" name="email" class="form-control" value="<%=
+  salemen["salesmanEmail"] %>" />
   <label> هاتف البائع </label>
-          <input type="text" name="phone" class="form-control" value="<%=
-          salemen["salesmanPhone"] %> " />
-        
-	          <label> الشركة </label>
-          <input type="text" name="company" class="form-control" value="<%=
-          salemen["salesmanCompany"] %> " />	
+  <input type="text" name="phone" hidden class="form-control" value="<%=
+  salemen["salesmanPhone"] %>" />
 
-       
-        <input type="hidden" name="saleman" value="<%= salemen["salesmanUID"]
-        %>" />
+  <label> الشركة </label>
+  <input type="text" name="company" class="form-control" value="<%=
+  salemen["salesmanCompany"] %>" />
 
+  <label> كلمة المرور </label>
+  <input type="text" name="password" class="form-control" />
 
-          <input type="submit" value="تعديل" class="btn btn-primary btn-lg" />
+  <input type="hidden" name="saleman" value="<%= salemen["salesmanUID"] %>" />
 
-      </form>
+  <input type="submit" value="تعديل" class="btn btn-primary btn-lg" />
+</form>

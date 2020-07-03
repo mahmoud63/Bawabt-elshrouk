@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+
 <h2 class="content-heading">طلبات دعم جديدة</h2>
 
 <div class="block">
@@ -25,7 +27,7 @@
   <tbody>
     <% for(var Request in Requests){ %>
     <%if(Requests[Request]['requestStatus']=='قيد المراجعة'){%>
-    <tr style="background-color:  rgba(108, 97, 255, 0.2)">
+    <tr style="background-color: rgba(108, 97, 255, 0.2);">
       <td>
         <%=Requests[Request]['customerName']%>
       </td>
@@ -49,7 +51,7 @@
       </td>
     </tr>
     <% } else if (Requests[Request]['requestStatus']=='تم الدعم المطلوب'){%>
-    <tr style="background-color:  rgba(79, 253, 63, 0.2)">
+    <tr style="background-color: rgba(79, 253, 63, 0.2);">
       <td>
         <%=Requests[Request]['customerName']%>
       </td>
@@ -69,7 +71,7 @@
       </td>
     </tr>
     <% } else if (Requests[Request]['requestStatus']=='تم رفض الطلب'){%>
-    <tr style="background-color:  rgba(255, 0, 0, 0.2)">
+    <tr style="background-color: rgba(255, 0, 0, 0.2);">
       <td>
         <%=Requests[Request]['customerName']%>
       </td>
@@ -93,7 +95,7 @@
 </table>
 
 <table id="mytable" charset="UTF-8">
-  <tbody style="display:none">
+  <tbody style="display: none;">
     <tr>
       <td>اسم الطلب</td>
       <td>الوصف</td>
@@ -132,34 +134,6 @@
 
 <script charset="UTF-8">
   function exportTableToExcel(tableID, filename = '') {
-    var downloadLink;
-    var dataType =
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-    var tableSelect = document.getElementById(tableID);
-    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-
-    // Specify file name
-    filename = filename ? filename + '.xlsx' : 'excel_data.xlsx ';
-
-    // Create download link element
-    downloadLink = document.createElement('a');
-
-    document.body.appendChild(downloadLink);
-
-    if (navigator.msSaveOrOpenBlob) {
-      var blob = new Blob(['\efbbbf', tableHTML], {
-        type: dataType
-      });
-      navigator.msSaveOrOpenBlob(blob, filename);
-    } else {
-      // Create a link to the file
-      downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-
-      // Setting the file name
-      downloadLink.download = filename;
-
-      //triggering the function
-      downloadLink.click();
-    }
+    TableToExcel.convert(document.getElementById('mytable'));
   }
 </script>

@@ -5,7 +5,10 @@ const firebaseApp = require('../helper/init'); //firebase.initializeApp(function
 function getOrders() {
   const ref = firebaseApp.database().ref('Orders');
 
-  return ref.once('value').then(snap => snap.val());
+  return ref
+    .limitToLast(5)
+    .once('value')
+    .then((snap) => snap.val());
 }
 function removeOrder(UID) {
   const ref = firebaseApp.database().ref('Orders');
@@ -18,47 +21,61 @@ function getOrder(UID) {
   return ref
     .child(`${UID}`)
     .once('value')
-    .then(snap => snap.val());
+    .then((snap) => snap.val());
 }
-function getSalemen() {
-  const ref = firebaseApp.database().ref('Customer');
+function getCustomer(customer) {
+  const ref = firebaseApp.database().ref('Customer').child(customer);
 
-  return ref.once('value').then(snap => snap.val());
+  return ref.once('value').then((snap) => snap.val());
 }
 
 module.exports = {
   renderOrders: (req, res) => {
     getOrders()
-      .then(orders => {
+      .then((orders) => {
         const ref = firebaseApp.database().ref('Customer');
         return ref
           .once('value')
-          .then(snap => snap.val())
-          .then(customer => {
+          .then((snap) => snap.val())
+          .then((customer) => {
             return res.render('orders', {
               orders,
               customer,
-              show: true
+              show: true,
             });
           });
       })
-      .catch(err => res.send(err));
+      .catch((err) => res.send(err));
   },
   removeOrder: (req, res) => {
     removeOrder(req.params.uid)
       .then(() => {
         return getOrders()
-          .then(orders => {
+          .then((orders) => {
             return res.render('orders', { orders: orders, show: true });
           })
-          .catch(err => res.send(err));
+          .catch((err) => res.send(err));
       })
-      .catch(err => res.send(err));
+      .catch((err) => res.send(err));
   },
   renderOrder: (req, res) => {
     getOrder(req.params.uid)
-      .then(child => res.render('order', { child, show: true }))
-      .catch(err => res.send(err));
+      .then((child) => {
+        return getCustomer(child.customerUID)
+          .then((customer) => {
+            if (!customer) {
+              customer = {
+                customerName: 'deleted customer',
+                customerJob: 'deleted customer',
+                customerEmail: 'deleted customer',
+                customerPhone: 'deleted customer',
+              };
+            }
+            return res.render('order', { customer, child, show: true });
+          })
+          .catch((err) => res.send(err));
+      })
+      .catch((err) => res.send(err));
   },
   accept: (req, res) => {
     const uid = req.params.uid;
@@ -71,7 +88,7 @@ module.exports = {
       .then(() => {
         return res.redirect('/orders');
       })
-      .catch(err => res.send(err));
+      .catch((err) => res.send(err));
   },
   refuse: (req, res) => {
     const uid = req.params.uid;
@@ -84,6 +101,6 @@ module.exports = {
       .then(() => {
         return res.redirect('/orders');
       })
-      .catch(err => res.send(err));
-  }
+      .catch((err) => res.send(err));
+  },
 };

@@ -5,7 +5,7 @@ const firebaseApp = require('../helper/init');
 function getSalemen() {
   const ref = firebaseApp.database().ref('Salesman');
 
-  return ref.once('value').then(snap => snap.val());
+  return ref.once('value').then((snap) => snap.val());
 }
 function removeSalemen(UID) {
   const ref = firebaseApp.database().ref('Salesman');
@@ -18,43 +18,43 @@ function getSaleman(UID) {
   return ref
     .child(`${UID}`)
     .once('value')
-    .then(snap => snap.val());
+    .then((snap) => snap.val());
 }
 function editSaleman(body) {}
 
 module.exports = {
   renderSalemen: (req, res) => {
     getSalemen()
-      .then(salemen => {
+      .then((salemen) => {
         return res.render('saleman', {
           salemen: salemen,
-          show: true
+          show: true,
         });
       })
-      .catch(err => res.send(err));
+      .catch((err) => res.send(err));
   },
 
   removeSalemen: (req, res) => {
     removeSalemen(req.params.uid)
       .then(() => {
         return getSalemen()
-          .then(salemen => {
+          .then((salemen) => {
             return res.render('saleman', {
               salemen: salemen,
-              show: true
+              show: true,
             });
           })
-          .catch(err => res.send(err));
+          .catch((err) => res.send(err));
       })
-      .catch(err => res.send(err));
+      .catch((err) => res.send(err));
   },
   renderSaleman: (req, res) => {
     getSaleman(req.params.uid)
-      .then(salemen => res.render('saleman_', { salemen, show: true }))
-      .catch(err => res.send(err));
+      .then((salemen) => res.render('saleman_', { salemen, show: true }))
+      .catch((err) => res.send(err));
   },
   editSaleman: (req, res) => {
-    const { name, email, phone, company, saleman } = req.body;
+    const { name, email, phone, company, password, saleman } = req.body;
 
     let saleman_ = saleman.toString();
 
@@ -65,13 +65,17 @@ module.exports = {
         salesmanName: name,
         salesmanEmail: email,
         salesmanPhone: phone,
-        salesmanCompany: company
+        salesmanCompany: company,
+        salesmanUID: saleman_,
+      })
+      .then(() => {
+        return firebaseApp.auth().updateUser(saleman_, { password: password });
       })
 
       .then(() => {
         return res.redirect('/salemen');
       })
-      .catch(err => res.send(err));
+      .catch((err) => res.send(err));
   },
   renderAddSaleman: (req, res) => {
     res.render('addSaleman', { err: 0, show: true });
@@ -82,9 +86,9 @@ module.exports = {
       .auth()
       .createUser({
         email: email,
-        password: password
+        password: password,
       })
-      .then(user => {
+      .then((user) => {
         return firebaseApp
           .database()
           .ref('Salesman')
@@ -94,25 +98,25 @@ module.exports = {
             salesmanEmail: email,
             salesmanPhone: phone,
             salesmanCompany: company,
-            salesmanUID: user['uid']
+            salesmanUID: user['uid'],
           })
           .then(() => {
             return res.redirect('/salemen');
           })
-          .catch(err => {
+          .catch((err) => {
             return console.log(err);
           });
       })
-      .catch(err => {
+      .catch((err) => {
         return getSalemen()
-          .then(salemen => {
+          .then((salemen) => {
             return res.render('addSaleman', {
               salemen: salemen,
               err: err,
-              show: true
+              show: true,
             });
           })
-          .catch(err => res.send(err));
+          .catch((err) => res.send(err));
       });
-  }
+  },
 };

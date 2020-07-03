@@ -1,0 +1,11 @@
+<h2 class="content-heading">تعديل بيانات الادمن</h2>
+
+<form action="/settings" method="POST">
+  <label> بريد الادمن </label>
+  <input type="text" name="mail" class="form-control" value="<%= admin["mail"]
+  %>" />
+  <label> كلمة المرور الادمن </label>
+  <input type="password" name="password" class="form-control" value="<%=
+  admin["password"] %>" />
+  <input type="submit" value="تعديل" class="btn btn-primary btn-lg" />
+</form>

@@ -6,16 +6,22 @@ const request = require('./controllers/request');
 const contract = require('./controllers/contract');
 const saleman = require('./controllers/saleman');
 const customer = require('./controllers/customer');
-
 const login = require('./controllers/login');
 const support = require('./controllers/support');
 const noti = require('./controllers/notification');
+const home = require('./controllers/home');
+const settings = require('./controllers/settings');
+
+const report = require('./controllers/reporsts');
+
+const auth = require('./helper/isAuth');
 
 module.exports = router;
 router.get('/', login.render);
-router.get('/home', (req, res) => {
-  res.render('home', { show: true });
-});
+router.get('/home', home.renderHome);
+router.get('/reports', report.renderReports);
+router.get('/settings', settings.admin);
+router.post('/settings', settings.edit);
 
 router.post('/varify', login.varify);
 
